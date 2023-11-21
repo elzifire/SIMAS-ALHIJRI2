@@ -69,6 +69,13 @@
                         <li class="{{ setActive('admin/dashboard') }}"><a class="nav-link"
                                 href="{{ route('admin.dashboard.index') }}"><i class="fas fa-tachometer-alt"></i>
                                 <span>Dashboard</span></a></li>
+
+                        @can('cash.index')
+                        <li class="{{ setActive('admin/cash') }}"><a class="nav-link"
+                            href="{{ route('admin.cash.index') }}"><i class="fas fa-arrow-up"></i>
+                            <span>Uang Kas</span></a></li>
+                        @endcan
+
                         @can('posts.index')
                         <li class="{{ setActive('admin/post') }}"><a class="nav-link"
                                 href="{{ route('admin.post.index') }}"><i class="fas fa-book-open"></i>
