@@ -51,7 +51,7 @@
                                 @foreach ($cashs as $no => $cash)
                                 <tr>
                                     {{-- <th scope="row" style="text-align: center">{{ ++$no + ($cashs->currentPage()-1) * $cashs->perPage() }}</th> --}}
-                                    {{ $no = 1 }}
+                                    
                                     <th scope="row" style="text-align: center">{{ $no++ }}</th>
                                     <td>{{ $cash->title }}</td>
                                     <td>{{ $cash->cash_flow }}</td>
@@ -68,7 +68,7 @@
                                         @endcan
                             
                                         @can('cash.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $cash->id }}">
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger"  id="{{ $cash->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         @endcan
