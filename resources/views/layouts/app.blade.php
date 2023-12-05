@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 
+    {{-- font awesome  --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
 
@@ -100,10 +103,17 @@
                                 <span>Agenda</span></a></li>
                         @endcan
 
+                        @can('events.index')
+                        <li class="{{ setActive('admin/leader') }}"><a class="nav-link"
+                                href="{{ route('admin.leader.index') }}"><i class="fa-solid fa-person-praying"></i>
+                                <span>Imam</span></a></li>
+                        @endcan
                         @if(auth()->user()->can('photos.index') || auth()->user()->can('videos.index'))
                         <li class="menu-header">GALERI</li>
                         @endif
                         
+                       
+
                         @can('photos.index')
                         <li class="{{ setActive('admin/photo') }}"><a class="nav-link"
                                 href="{{ route('admin.photo.index') }}"><i class="fas fa-image"></i>
@@ -115,6 +125,8 @@
                                 href="{{ route('admin.video.index') }}"><i class="fas fa-video"></i>
                                 <span>Video</span></a></li>
                         @endcan
+                        
+
 
                         @if(auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index'))
                         <li class="menu-header">PENGATURAN</li>

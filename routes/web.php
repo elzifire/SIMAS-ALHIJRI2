@@ -45,6 +45,9 @@ Route::prefix('admin')->group(function () {
         //event
         Route::resource('/event', App\Http\Controllers\Admin\EventController::class, ['except' => 'show' ,'as' => 'admin']);
 
+        //leaders 
+        Route::resource('/leader', App\Http\Controllers\Admin\LeaderController::class, ['except' => 'show' ,'as' => 'admin']);
+
         // cash flow
         Route::resource('/cash', App\Http\Controllers\Admin\CashController::class, ['except' => 'show' ,'as' => 'admin']);
 

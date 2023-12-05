@@ -72,7 +72,7 @@ class PostController extends Controller
             'title'       => $request->input('title'),
             'slug'        => Str::slug($request->input('title'), '-'),
             'category_id' => $request->input('category_id'),
-            'content'     => $request->input('content')  
+            'content'     => $request->input('content'),
         ]);
 
         //assign tags
@@ -159,6 +159,7 @@ class PostController extends Controller
         }
     }
 
+    
     /**
      * Remove the specified resource from storage.
      *

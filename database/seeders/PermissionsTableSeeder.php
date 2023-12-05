@@ -37,6 +37,13 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'events.edit']);
         Permission::create(['name' => 'events.delete']);
 
+        //leaders
+        Permission::create(['name' => 'leaders.index' ]);
+        Permission::create(['name' => 'leaders.create']);
+        Permission::create(['name' => 'leaders.edit']);
+        Permission::create(['name' => 'leaders.delete']);
+
+        //cash 
         Permission::create(['name' => 'cash.index']);
         Permission::create(['name' => 'cash.create']);
         Permission::create(['name' => 'cash.edit']);
@@ -72,7 +79,6 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'users.edit']);
         Permission::create(['name' => 'users.delete']);
 
-        // permission for cash flow
         
     }
 }
