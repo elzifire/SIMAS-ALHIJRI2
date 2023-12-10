@@ -49,7 +49,7 @@
                                     
                                     <td class="text-center">
                                         @can('leaders.edit')
-                                            <a href="{{ route('admin.event.edit', $leader->id) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('admin.leader.edit', $leader->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         @endcan

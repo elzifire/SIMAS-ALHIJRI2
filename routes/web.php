@@ -60,6 +60,8 @@ Route::prefix('admin')->group(function () {
         //slider
         Route::resource('/slider', App\Http\Controllers\Admin\SliderController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
 
+        
+
     });
 
 });
