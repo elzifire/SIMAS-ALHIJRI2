@@ -73,9 +73,9 @@
                                 href="{{ route('admin.dashboard.index') }}"><i class="fas fa-tachometer-alt"></i>
                                 <span>Dashboard</span></a></li>
 
-                        @can('cash.index')
-                        <li class="{{ setActive('admin/cash') }}"><a class="nav-link"
-                            href="{{ route('admin.cash.index') }}"><i class="fas fa-arrow-up"></i>
+                        @can('keuangan.index')
+                        <li class="{{ setActive('keuangan/index') }}"><a class="nav-link"
+                            href="{{ route('admin.keuangan.index') }}"><i class="fa-solid fa-money-check"></i>
                             <span>Uang Kas</span></a></li>
                         @endcan
 

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Contracts\Role;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,9 +50,6 @@ Route::prefix('admin')->group(function () {
         //leaders 
         Route::resource('/leader', App\Http\Controllers\Admin\LeaderController::class, ['except' => 'show' ,'as' => 'admin']);
 
-        // cash flow
-        Route::resource('/cash', App\Http\Controllers\Admin\CashController::class, ['except' => 'show' ,'as' => 'admin']);
-
         //photo
         Route::resource('/photo', App\Http\Controllers\Admin\PhotoController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
         
@@ -60,8 +59,12 @@ Route::prefix('admin')->group(function () {
         //slider
         Route::resource('/slider', App\Http\Controllers\Admin\SliderController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
 
+        // money
+        Route::resource('/money', \App\Http\Controllers\Admin\MoneyController::class, ['except' => 'show', 'as' => 'admin']);
+
         
 
+        
     });
 
 });
