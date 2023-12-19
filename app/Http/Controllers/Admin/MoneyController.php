@@ -29,8 +29,25 @@ class MoneyController extends Controller
 
     $moneys = $moneys->paginate(10); // adjust page size to your needs
 
-    return view('admin.money.index', compact('moneys', 'jenis'));
+    // calculate total masuk
+    $totalMasuk = 0;
+    foreach ($moneys as $money) {
+        if ($money->jenis == 'masuk') {
+            $totalMasuk += $money->jumlah;
+        }
+    }
+
+    // calculate total keluar
+    $totalKeluar = 0;
+    foreach ($moneys as $money) {
+        if ($money->jenis == 'keluar') {
+            $totalKeluar += $money->jumlah;
+        }
+    }
+
+    return view('admin.money.index', compact('moneys', 'jenis', 'totalMasuk', 'totalKeluar'));
 }
+
 
 
 

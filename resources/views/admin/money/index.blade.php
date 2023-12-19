@@ -40,7 +40,7 @@
           <option value="keluar">Keluar</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Cari</button>
+      <button type="submit" class="btn btn-primary">Filter</button>
     </form>
   </div>
 </div>
@@ -74,9 +74,18 @@
             </button>
           @endcan
         </td>
+        
       </tr>
-    @endforeach
   </tbody>
+<tfoot>
+    <tr>
+        <th colspan="2">UANG MASUK: {{ $totalMasuk }}</th>
+        <th>UANG KELUAR: {{ $totalKeluar }}</th>
+        <th>SALDO :{{ $totalMasuk - $totalKeluar }}</th>
+    </tr>
+</tfoot>
+@endforeach
+
 </table>
 
 {{ $moneys->links("vendor.pagination.bootstrap-5") }}
