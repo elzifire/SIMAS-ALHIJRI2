@@ -59,12 +59,12 @@
     @foreach ($moneys as $no => $money)
       <tr>
         <th scope="row" style="text-align: center">{{ ($moneys->currentPage() - 1) * $moneys->perPage() + $no + 1 }}</th>
-        <td>{{ $money->jumlah }}</td>
+        <td>Rp. {{ $money->jumlah }}</td>
         <td>{{ $money->jenis }}</td>
         <td>{{ $money->tanggal }}</td>
         <td class="text-center">
           @can('moneys.edit')
-            <a href="{{ route('admin.money.edit', $money->id) }}" class="btn btn-sm btn-primary">
+          <a href="{{ route('admin.money.edit', $money->id) }}" class="btn btn-sm btn-primary">
               <i class="fa fa-pencil-alt"></i>
             </a>
           @endcan
@@ -73,21 +73,21 @@
               <i class="fa fa-trash"></i>
             </button>
           @endcan
-        </td>
-        
+        </td>      
       </tr>
-  </tbody>
-<tfoot>
-    <tr>
-        <th colspan="2">UANG MASUK: {{ $totalMasuk }}</th>
-        <th>UANG KELUAR: {{ $totalKeluar }}</th>
-        <th>SALDO :{{ $totalMasuk - $totalKeluar }}</th>
-    </tr>
-</tfoot>
-@endforeach
-
+      @endforeach
+    </tbody>
+    <tfoot>
+      <tr>
+          <th colspan="4" class="text-right p-3">UANG MASUK :</th>
+          <th><span>Rp. {{ number_format($totalMasuk, 0, ',', '.') }}</span></th> </tr>
+      <tr>
+          <th colspan="4" class="text-right p-3">UANG KELUAR :</th>
+          <th><span>Rp. {{ number_format($totalKeluar, 0, ',', '.') }}</span></th>
+      </tr>
+  </tfoot>
+  
 </table>
-
 {{ $moneys->links("vendor.pagination.bootstrap-5") }}
 
 
@@ -118,7 +118,7 @@
 
                 //ajax delete
                 jQuery.ajax({
-                    url: "/admin/event/"+id,
+                    url: "/admin/money/"+id,
                     data:     {
                         "id": id,
                         "_token": token

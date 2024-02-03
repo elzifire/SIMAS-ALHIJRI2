@@ -61,6 +61,7 @@ class PostController extends Controller
             'title'         => 'required|unique:posts',
             'category_id'   => 'required',
             'content'       => 'required',
+            'bahasa'  => 'required',
         ]);
 
         //upload image
@@ -73,6 +74,7 @@ class PostController extends Controller
             'slug'        => Str::slug($request->input('title'), '-'),
             'category_id' => $request->input('category_id'),
             'content'     => $request->input('content'),
+            'bahasa' =>$request->input('bahasa'),
         ]);
 
         //assign tags

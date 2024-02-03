@@ -105,9 +105,16 @@
 
                         @can('events.index')
                         <li class="{{ setActive('admin/leader') }}"><a class="nav-link"
-                                href="{{ route('admin.leader.index') }}"><i class="fa-solid fa-person-praying"></i>
+                                href="{{ route('admin.leader.index') }}"><i class="fas fa-person-praying"></i>
                                 <span>Imam</span></a></li>
                         @endcan
+
+                        @can('moneys.index')
+                        <li class="{{ setActive('admin/money') }}"><a class="nav-link"
+                            href="{{ route('admin.money.index') }}"><i class="fas fa-money-bill"></i>
+                            <span>Uang Kas</span></a></li>
+                        @endcan
+
                         @if(auth()->user()->can('photos.index') || auth()->user()->can('videos.index'))
                         <li class="menu-header">GALERI</li>
                         @endif

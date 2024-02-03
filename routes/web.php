@@ -61,7 +61,7 @@ Route::prefix('admin')->group(function () {
 
         // money
         Route::resource('/money', \App\Http\Controllers\Admin\MoneyController::class, ['except' => 'show', 'as' => 'admin']);
-
+        
         
 
         
