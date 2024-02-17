@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Money;
-
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
-{    
+{
     /**
      * index
      *
@@ -16,12 +16,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $moneys = Money::latest();
 
-        return view('admin.dashboard.index', compact('moneys'));
+       
+        return view('admin.dashboard.index');
     }
-
-
-    
-
 }

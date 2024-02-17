@@ -55,7 +55,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
-                <div class="card-icon bg-success">
+                <div class="card-icon bg-dark">
                   <i class="fa fa-users text-white fa-2x"></i>
                 </div>
                 <div class="card-wrap">
@@ -78,7 +78,7 @@
                     <h4>UANG MASUK</h4>
                   </div>
                   <div class="card-body">
-                    {{-- {{ App\Models\User::count() ?? '0' }} --}}
+                    {{ App\Models\Money::latest()->first()->saldo ?? '0' }}
                   </div>
                 </div>
               </div>
