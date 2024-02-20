@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('money', function (Blueprint $table) {
             $table->id();
+            $table->string('Keterangan');
             $table->decimal('jumlah')->comment('Jumlah dalam rupiah');
             $table->enum('jenis', ['masuk', 'keluar']);
             $table->decimal('total_masuk')->default(0); // Add this field

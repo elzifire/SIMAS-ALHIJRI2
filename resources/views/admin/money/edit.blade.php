@@ -19,7 +19,12 @@
                         @method('PUT')
 
                         <div class="form-group">
-                            <label for="jumlah">Jumlah (Rp):</label>
+                            <label for="jumlah">KETERANGAN</label>
+                            <input type="number" class="form-control" id="jumlah" name="keterangan" min="0" value="{{ $money->keterangan }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jumlah">JUMLAH (Rp):</label>
                             <input type="number" class="form-control" id="jumlah" name="jumlah" min="0" value="{{ $money->jumlah }}" required>
                         </div>
                         <div class="form-group">

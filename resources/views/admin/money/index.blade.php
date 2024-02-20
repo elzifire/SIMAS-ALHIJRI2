@@ -40,7 +40,7 @@
           <option value="keluar">Keluar</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Filter</button>
+      <button type="submit" class="btn btn-primary mb-4">Filter</button>
     </form>
   </div>
 </div>
@@ -49,9 +49,10 @@
   <thead>
     <tr>
       <th scope="col" style="text-align: center;width: 6%">NO.</th>
-      <th scope="col">JUMLAH</th>
+      <th scope="col">KETERANGAN</th>
       <th scope="col">JENIS</th>
       <th scope="col">TANGGAL</th>
+      <th scope="col">JUMLAH</th>
       <th scope="col" style="width: 15%;text-align: center">AKSI</th>
     </tr>
   </thead>
@@ -59,9 +60,10 @@
     @foreach ($moneys as $no => $money)
       <tr>
         <th scope="row" style="text-align: center">{{ ($moneys->currentPage() - 1) * $moneys->perPage() + $no + 1 }}</th>
-        <td>Rp. {{ $money->jumlah }}</td>
+        <td>Rp. {{ $money->keterangan }}</td>
         <td>{{ $money->jenis }}</td>
         <td>{{ $money->tanggal }}</td>
+        <td>Rp. {{ number_format($money->jumlah, 0, ',', '.') }}</td>
         <td class="text-center">
           @can('moneys.edit')
           <a href="{{ route('admin.money.edit', $money->id) }}" class="btn btn-sm btn-primary">
@@ -79,12 +81,17 @@
     </tbody>
     <tfoot>
       <tr>
-          <th colspan="4" class="text-right p-3">UANG MASUK :</th>
+          <th colspan="5" class="text-right p-3">UANG MASUK :</th>
           <th><span>Rp. {{ number_format($totalMasuk, 0, ',', '.') }}</span></th> </tr>
       <tr>
-          <th colspan="4" class="text-right p-3">UANG KELUAR :</th>
+          <th colspan="5" class="text-right p-3">UANG KELUAR :</th>
           <th><span>Rp. {{ number_format($totalKeluar, 0, ',', '.') }}</span></th>
       </tr>
+      <tr>
+        <th colspan="5" class="text-right p-3">SALDO</th>
+        <th><span>Rp.{{ number_format(App\Models\Money::latest()->first()->saldo ?? '0', 0, ',', '.') }}</span></th>
+    </tr>
+    
   </tfoot>
   
 </table>

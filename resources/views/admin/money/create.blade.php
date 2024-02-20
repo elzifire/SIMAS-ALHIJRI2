@@ -16,10 +16,10 @@
                     <div class="card-body">
                         <form action="{{ route('admin.money.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            
                             <div class="form-group">
-                                <label for="jumlah">Jumlah (Rp):</label>
-                                <input type="number" class="form-control" id="jumlah" name="jumlah" min="0"
-                                    required>
+                                <label for="tanggal">Keterangan</label>
+                                <input type="text" class="form-control" id="tanggal" name="keterangan" required>
                             </div>
                             <div class="form-group">
                                 <label for="jenis">Jenis KAS Masuk:</label>
@@ -28,9 +28,15 @@
                                     <option value="keluar">Keluar</option>
                                 </select>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="tanggal">Tanggal:</label>
                                 <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="jumlah">Jumlah (Rp):</label>
+                                <input type="number" class="form-control" id="jumlah" name="jumlah" min="0"
+                                    required>
                             </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>

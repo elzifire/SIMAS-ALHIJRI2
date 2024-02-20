@@ -19,10 +19,14 @@
                             @csrf
 
                             <div class="form-group">
-                                <label>GAMBAR</label>
-                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
-
-                                @error('image')
+                                <label>KATEGORI</label>
+                                <select class="form-control select-category @error('category_id') is-invalid @enderror" name="category_id">
+                                    <option value="">-- PILIH KATEGORI --</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('category_id')
                                 <div class="invalid-feedback" style="display: block">
                                     {{ $message }}
                                 </div>
@@ -40,21 +44,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label>KATEGORI</label>
-                                <select class="form-control select-category @error('category_id') is-invalid @enderror" name="category_id">
-                                    <option value="">-- PILIH KATEGORI --</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('category_id')
-                                <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
+                            
                             <div class="form-group">
                                 <label>KONTEN</label>
                                 <textarea class="form-control content @error('content') is-invalid @enderror" name="content" placeholder="Masukkan Konten / Isi Berita" rows="10">{!! old('content') !!}</textarea>
@@ -64,6 +54,18 @@
                                 </div>
                                 @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label>GAMBAR</label>
+                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+
+                                @error('image')
+                                <div class="invalid-feedback" style="display: block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
 
                             <div class="form-group">
                                 <label class="font-weight-bold">TAGS</label>

@@ -19,24 +19,6 @@
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="form-group">
-                            <label>GAMBAR</label>
-                            <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
-                        </div>
-
-                        <div class="form-group">
-                            <label>JUDUL BERITA</label>
-                            <input type="text" name="title" value="{{ old('title', $post->title) }}"
-                                placeholder="Masukkan Judul Berita"
-                                class="form-control @error('title') is-invalid @enderror">
-
-
-                            @error('title')
-                            <div class="invalid-feedback" style="display: block">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
 
                         <div class="form-group">
                             <label>KATEGORI</label>
@@ -59,6 +41,21 @@
                         </div>
 
                         <div class="form-group">
+                            <label>JUDUL BERITA</label>
+                            <input type="text" name="title" value="{{ old('title', $post->title) }}"
+                                placeholder="Masukkan Judul Berita"
+                                class="form-control @error('title') is-invalid @enderror">
+
+                            @error('title')
+                            <div class="invalid-feedback" style="display: block">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        
+
+                        <div class="form-group">
                             <label>KONTEN</label>
                             <textarea class="form-control content @error('content') is-invalid @enderror" name="content"
                                 placeholder="Masukkan Konten / Isi Berita"
@@ -69,6 +66,13 @@
                             </div>
                             @enderror
                         </div>
+
+                        
+                        <div class="form-group">
+                            <label>GAMBAR</label>
+                            <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+                        </div>
+
 
                         <div class="form-group">
                             <label class="font-weight-bold">TAGS</label>

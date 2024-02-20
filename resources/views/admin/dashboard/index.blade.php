@@ -8,6 +8,53 @@
         </div>
 
         <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-success">
+                <i class="fas fa-arrow-up text-white fa-2x"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                    <h4>UANG MASUK</h4>
+                </div>
+                <div class="card-body">
+                    Rp.{{ number_format(App\Models\Money::latest()->first()->saldo ?? '0', 0, ',', '.') }}
+                </div>
+            </div>
+            
+            </div>
+          </div> 
+          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-danger">
+                <i class="fas fa-arrow-down text-white fa-2x"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                    <h4>UANG KELUAR</h4>
+                </div>
+                <div class="card-body">
+                    Rp.{{ number_format(App\Models\Money::latest()->first()->total_keluar ?? '0', 0, ',', '.') }}
+                </div>
+            </div>
+            
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-info">
+                <i class="fas fa-person-praying text-white fa-2x"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                  <h4>IMAM</h4>
+                </div>
+                <div class="card-body">
+                  {{ App\Models\Leader::count() ?? '0' }}
+                </div>
+              </div>
+            </div>
+          </div>  
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
                 <div class="card-icon bg-primary">
@@ -25,7 +72,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
-                <div class="card-icon bg-danger">
+                <div class="card-icon bg-warning">
                   <i class="fa fa-bell text-white fa-2x"></i>
                 </div>
                 <div class="card-wrap">
@@ -40,7 +87,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
-                <div class="card-icon bg-warning">
+                <div class="card-icon bg-secondary">
                   <i class="fa fa-tags text-white fa-2x"></i>
                 </div>
                 <div class="card-wrap">
@@ -68,21 +115,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-              <div class="card card-statistic-1">
-                <div class="card-icon bg-success">
-                  <i class="fas fa-arrow-up text-white fa-2x"></i>
-                </div>
-                <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>UANG MASUK</h4>
-                  </div>
-                  <div class="card-body">
-                    {{ App\Models\Money::latest()->first()->saldo ?? '0' }}
-                  </div>
-                </div>
-              </div>
-            </div>                      
+                              
           </div>
 
     </section>

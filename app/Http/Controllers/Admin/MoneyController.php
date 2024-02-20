@@ -43,6 +43,7 @@ class MoneyController extends Controller
             'jumlah' => 'required|numeric|min:0',
             'jenis' => 'required|in:masuk,keluar',
             'tanggal' => 'required|date',
+            'keterangan' => 'required',
         ]);
 
         // Calculate total masuk and total keluar before the new record
@@ -81,6 +82,7 @@ class MoneyController extends Controller
             'jumlah' => 'required|numeric|min:0',
             'jenis' => 'required|in:masuk,keluar',
             'tanggal' => 'required|date',
+            'keterangan' => 'required',
         ]);
 
         // Calculate total masuk and total keluar before the update

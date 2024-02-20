@@ -48,3 +48,6 @@ Route::get('/homepage/photo', [App\Http\Controllers\Api\PhotoController::class, 
 //video
 Route::get('/video', [App\Http\Controllers\Api\VideoController::class, 'index']);
 Route::get('/homepage/video', [App\Http\Controllers\Api\VideoController::class, 'VideoHomepage']);
+
+//money
+Route::get('/money', [\App\Http\Controllers\Api\MoneyController::class, 'index']);
