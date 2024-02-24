@@ -26,9 +26,11 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        $photos = Photo::latest()->when(request()->q, function($photos) {
-            $photos = $photos->where('title', 'like', '%'. request()->q . '%');
-        })->paginate(10);
+        $photos = Photo::latest()
+            ->when(request()->q, function ($photos) {
+                $photos = $photos->where('title', 'like', '%' . request()->q . '%');
+            })
+            ->paginate(10);
 
         return view('admin.photo.index', compact('photos'));
     }
@@ -42,8 +44,11 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'image'     => 'required|image',
-            'caption'   => 'required'
+            'heading' => 'required',
+            'date' => 'required',
+            'caption' => 'required',
+            'image' => 'required|image',
+            
         ]);
 
         //upload image
@@ -51,16 +56,23 @@ class PhotoController extends Controller
         $image->storeAs('public/photos', $image->hashName());
 
         $photo = Photo::create([
-            'image'     => $image->hashName(),
-            'caption'   => $request->input('caption')
+            'heading' => $request->input('heading'),
+            'caption' => $request->input('caption'),
+            'date' => $request->input('date'),
+            'image' => $image->hashName(),
+
         ]);
 
-        if($photo){
+        if ($photo) {
             //redirect dengan pesan sukses
-            return redirect()->route('admin.photo.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else{
+            return redirect()
+                ->route('admin.photo.index')
+                ->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
             //redirect dengan pesan error
-            return redirect()->route('admin.photo.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()
+                ->route('admin.photo.index')
+                ->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -73,16 +85,16 @@ class PhotoController extends Controller
     public function destroy($id)
     {
         $photo = Photo::findOrFail($id);
-        $image = Storage::disk('local')->delete('public/photos/'.basename($photo->image));
+        $image = Storage::disk('local')->delete('public/photos/' . basename($photo->image));
         $photo->delete();
 
-        if($photo){
+        if ($photo) {
             return response()->json([
-                'status' => 'success'
+                'status' => 'success',
             ]);
-        }else{
+        } else {
             return response()->json([
-                'status' => 'error'
+                'status' => 'error',
             ]);
         }
     }

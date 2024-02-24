@@ -18,7 +18,6 @@ return new class extends Migration
          $table->string('slug');
          $table->bigInteger('category_id')->unsigned();
          $table->text('content');
-         $table->enum('bahasa', ['id', 'en'])->nullable();
          $table->timestamps();
       });
         

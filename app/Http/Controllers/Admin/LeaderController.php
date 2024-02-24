@@ -6,6 +6,7 @@ use App\Models\Leader;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 
 class LeaderController extends Controller 
@@ -23,8 +24,6 @@ class LeaderController extends Controller
             $leaders = $leaders->where('name', 'like', '%'. request()->q . '%');
         })->paginate(10);
         return view('admin.leader.index', compact('leaders'));
-
-        
     }
 
 
@@ -37,20 +36,24 @@ class LeaderController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'telp' => 'required',
+            'image' => 'required',
         ]);
+
+       $image = $request->file('image');
+       $image->storeAs('public/leader', $image->hashName());
 
         $leader = Leader::create([
             'name' => $request->input('name'),
+            'telp' => $request->input('telp'),
+            'image' => $image->hashName(),
         ]);
 
         if($leader){
             return redirect()->route('admin.leader.index')->with(['success' => 'Data Berhasil Disimpan!']);           
         }else {
-            return redirect()->route('admin.leader.index')->with(['error' => 'Data Gagal Disimpan!']);           
-            
+            return redirect()->route('admin.leader.index')->with(['error' => 'Data Gagal Disimpan!']);              
         }
-
-
     }
 
 
@@ -66,8 +69,13 @@ class LeaderController extends Controller
         ]);
 
         $leader = Leader::findOrFail($leader->id);
+         $image = $request->file('image');
+       $image->storeAs('public/leader', $image->hashName());
+
         $leader->update([
             'name' => $request->input('name'),
+            'telp' => $request->input('telp'),
+            'image' => $image->hashName(),
         ]);
 
         if($leader){

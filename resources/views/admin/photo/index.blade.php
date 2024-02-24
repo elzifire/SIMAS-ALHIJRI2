@@ -20,11 +20,13 @@
                         <form action="{{ route('admin.photo.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
-                            <div class="form-group">
-                                <label>GAMBAR</label>
-                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+                        
 
-                                @error('image')
+                            <div class="form-group">
+                                <label>JUDUL</label>
+                                <input type="text" name="heading" value="{{ old('heading') }}" placeholder="Masukkan Judul Foto" class="form-control @error('heading') is-invalid @enderror">
+
+                                @error('heading')
                                 <div class="invalid-feedback" style="display: block">
                                     {{ $message }}
                                 </div>
@@ -33,9 +35,31 @@
 
                             <div class="form-group">
                                 <label>CAPTION</label>
-                                <input type="text" name="caption" value="{{ old('caption') }}" placeholder="Masukkan Judul Foto" class="form-control @error('caption') is-invalid @enderror">
+                                <input type="text" name="caption" value="{{ old('caption') }}" placeholder="Masukkan isi Foto" class="form-control @error('caption') is-invalid @enderror">
 
                                 @error('caption')
+                                <div class="invalid-feedback" style="display: block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label>TANGGAL</label>
+                                <input type="date" name="date" value="{{ old('date') }}" class="form-control @error('date') is-invalid @enderror">
+
+                                @error('date')
+                                <div class="invalid-feedback" style="display: block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label>GAMBAR</label>
+                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+
+                                @error('image')
                                 <div class="invalid-feedback" style="display: block">
                                     {{ $message }}
                                 </div>
@@ -64,8 +88,10 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">FOTO</th>
+                                <th scope="col">JUDUL</th>
                                 <th scope="col">CAPTION</th>
+                                <th scope="col">TANGGAL</th>    
+                                <th scope="col">FOTO</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
                             </thead>
@@ -73,14 +99,16 @@
                             @foreach ($photos as $no => $photo)
                                 <tr>
                                     <th scope="row" style="text-align: center">{{ ++$no + ($photos->currentPage()-1) * $photos->perPage() }}</th>
-                                    <td><img src="{{ $photo->image }}" style="width: 150px"></td>
+                                    <td>{{ $photo->heading }}</td>
                                     <td>{{ $photo->caption }}</td>
+                                    <td>{{ $photo->date }}</td>
+                                    <td><img src="{{ $photo->image }}" style="width: 150px"></td>
                                     <td class="text-center">
                                         @can('photos.delete')
                                             <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $photo->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                        @endcan
+                             1           @endcan
                                     </td>
                                 </tr>
                             @endforeach

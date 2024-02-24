@@ -38,6 +38,8 @@
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
                                 <th scope="col">NAMA IMAM</th>
+                                <th scope="col">NOMOR TELEPON</th>
+                                <th scope="col">FOTO</th>
                                 <th scope="col" style="text-align: center">AKSI</th>
                             </tr>
                             </thead>
@@ -46,7 +48,8 @@
                                 <tr>
                                     <th scope="row" style="text-align: center">{{ ++$no + ($leaders->currentPage()-1) * $leaders->perPage() }}</th>
                                     <td>{{ $leader->name }}</td>
-                                    
+                                    <td>{{ $leader->telp }}</td>
+                                    <td><img src="{{ $leader->image }}" alt="" style="width: 125px"></td>       
                                     <td class="text-center">
                                         @can('leaders.edit')
                                             <a href="{{ route('admin.leader.edit', $leader->id) }}" class="btn btn-sm btn-primary">
