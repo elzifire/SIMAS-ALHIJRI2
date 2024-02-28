@@ -4,79 +4,61 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Slider</h1>
+            <h1>Daftar Muadzin Masjid</h1>
         </div>
 
         <div class="section-body">
 
-            @can('sliders.create')
-                <div class="card">
-                    <div class="card-header">
-                        <h4><i class="fas fa-laptop"></i> Upload Slider</h4>
-                    </div>
-
-                    <div class="card-body">
-
-                        <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="form-group">
-                                <label>GAMBAR</label>
-                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
-
-                                @error('image')
-                                <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>LINK</label>
-                                <input type="url" name="link" class="form-control @error('link') is-invalid @enderror">
-
-                                @error('link')
-                                <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-upload"></i> UPLOAD</button>
-                            <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
-
-                        </form>
-
-                    </div>
-                </div>
-            @endcan
-
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-laptop"></i> Slider</h4>
+                    <h4><i class="fa-solid fa-person"></i> Daftar Muadzin Masjid</h4>
                 </div>
 
                 <div class="card-body">
-                    
+                    <form action="{{ route('admin.muadzin.index') }}" method="GET">
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                @can('muadzins.create')
+                                    <div class="input-group-prepend">
+                                        <a href="{{ route('admin.muadzin.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
+                                    </div>
+                                @endcan
+                                <input type="text" class="form-control" name="q"
+                                       placeholder="cari berdasarkan nama muadzin">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
+                                <th scope="col">NAMA MUADZIN</th>
+                                <th scope="col">NOMOR TELEPON</th>
                                 <th scope="col">FOTO</th>
-                                <th scope="col">LINK</th>
-                                <th scope="col" style="width: 15%;text-align: center">AKSI</th>
+                                <th scope="col" style="text-align: center">AKSI</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($sliders as $no => $slider)
+                                @foreach ($muadzins as $no => $muadzin)
                                 <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($sliders->currentPage()-1) * $sliders->perPage() }}</th>
-                                    <td class="text-center"><img src="{{ $slider->image }}" style="width: 300px"></td>
-                                    <td class="text-center"><a href="{{ $slider->link }}">{{ $slider->link }}</a></td>
+                                    <th scope="row" style="text-align: center">{{ ++$no + ($muadzins->currentPage()-1) * $muadzins->perPage() }}</th>
+                                    <td>{{ $muadzin->name }}</td>
+                                    <td>{{ $muadzin->telp }}</td>
+                                    <td><img src="{{ $muadzin->image }}" alt="" style="width: 125px"></td>       
                                     <td class="text-center">
-                                        @can('sliders.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $slider->id }}">
+                                        @can('muadzins.edit')
+                                            <a href="{{ route('admin.muadzin.edit', $muadzin->id) }}" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                        @endcan
+
+                                        @can('muadzins.delete')
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $muadzin->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         @endcan
@@ -86,7 +68,7 @@
                             </tbody>
                         </table>
                         <div style="text-align: center">
-                            {{$sliders->links("vendor.pagination.bootstrap-4")}}
+                            {{$muadzins->links("vendor.pagination.bootstrap-4")}}
                         </div>
                     </div>
                 </div>
@@ -117,7 +99,7 @@
 
                     //ajax delete
                     jQuery.ajax({
-                        url: "/admin/slider/"+id,
+                        url: "/admin/muadzin/"+id,
                         data:     {
                             "id": id,
                             "_token": token

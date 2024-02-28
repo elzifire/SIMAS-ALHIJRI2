@@ -4,24 +4,37 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Slider</h1>
+            <h1>Foto</h1>
         </div>
 
         <div class="section-body">
 
-            @can('sliders.create')
+            @can('managements.create')
                 <div class="card">
                     <div class="card-header">
-                        <h4><i class="fas fa-laptop"></i> Upload Slider</h4>
+                        <h4>UPLOAD KEPENGURUSAN</h4>
                     </div>
 
                     <div class="card-body">
 
-                        <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.management.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
+                        
+
                             <div class="form-group">
-                                <label>GAMBAR</label>
+                                <label>NAMA</label>
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Masukkan NAMA" class="form-control @error('name') is-invalid @enderror">
+
+                                @error('name')
+                                <div class="invalid-feedback" style="display: block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label>FOTO</label>
                                 <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
 
                                 @error('image')
@@ -31,19 +44,9 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label>LINK</label>
-                                <input type="url" name="link" class="form-control @error('link') is-invalid @enderror">
-
-                                @error('link')
-                                <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
                             <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-upload"></i> UPLOAD</button>
                             <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
+
 
                         </form>
 
@@ -53,7 +56,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-laptop"></i> Slider</h4>
+                    <h4><i class="fas fa-image"></i> Foto</h4>
                 </div>
 
                 <div class="card-body">
@@ -63,30 +66,30 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
+                                <th scope="col">NAMA</th> 
                                 <th scope="col">FOTO</th>
-                                <th scope="col">LINK</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($sliders as $no => $slider)
+                            @foreach ($managements as $no => $management)
                                 <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($sliders->currentPage()-1) * $sliders->perPage() }}</th>
-                                    <td class="text-center"><img src="{{ $slider->image }}" style="width: 300px"></td>
-                                    <td class="text-center"><a href="{{ $slider->link }}">{{ $slider->link }}</a></td>
+                                    <th scope="row" style="text-align: center">{{ ++$no + ($managements->currentPage()-1) * $managements->perPage() }}</th>
+                                    <td>{{ $management->name }}</td>
+                                    <td><img src="{{ $management->image }}" style="width: 150px"></td>
                                     <td class="text-center">
-                                        @can('sliders.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $slider->id }}">
+                                        @can('managements.delete')
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $management->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                        @endcan
+                                       @endcan
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                         <div style="text-align: center">
-                            {{$sliders->links("vendor.pagination.bootstrap-4")}}
+                            {{$managements->links("vendor.pagination.bootstrap-4")}}
                         </div>
                     </div>
                 </div>
@@ -115,9 +118,10 @@
             }).then(function(isConfirm) {
                 if (isConfirm) {
 
+
                     //ajax delete
                     jQuery.ajax({
-                        url: "/admin/slider/"+id,
+                        url: "/admin/management/"+id,
                         data:     {
                             "id": id,
                             "_token": token

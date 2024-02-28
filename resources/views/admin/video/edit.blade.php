@@ -30,6 +30,17 @@
                             </div>
 
                             <div class="form-group">
+                                <label>DESKRIPSI</label>
+                                <input type="text" name="desc" id="text" value="{{ old('desc', $video->desc) }}" placeholder="Masukkan Judul Video" class="form-control @error('desc') is-invalid @enderror">
+
+                                @error('desc')
+                                <div class="invalid-feedback" style="display: block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label>EMBED YOUTUBE</label>
                                 <input type="text" name="embed" value="{{ old('embed', $video->embed) }}" placeholder="Masukkan Embed YouTube" class="form-control @error('embed') is-invalid @enderror">
 
@@ -49,4 +60,11 @@
             </div>
         </section>
     </div>
+    <script>
+        tinymce.init({
+          selector: '#text',
+          plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+      </script>
 @stop

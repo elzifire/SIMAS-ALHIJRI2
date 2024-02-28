@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('muadzins', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('no_telp');
-            $table->string('foto');
+            $table->integer('telp');
+            $table->string('image');
             $table->timestamps();
         });
-        
     }
 
     /**

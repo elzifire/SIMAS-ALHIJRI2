@@ -57,36 +57,41 @@ class LeaderController extends Controller
     }
 
 
-    public function edit()
+    public function edit(Leader $leader)
     {
-        return view('admin.leader.edit');
+        return view('admin.leader.edit', compact('leader'));
     }
     
     public function update(Request $request, Leader $leader)
     {
         $this->validate($request, [
-           'name' => 'required', 
+            'name' => 'required',
+            'telp' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Add image validation
         ]);
-
+    
         $leader = Leader::findOrFail($leader->id);
-         $image = $request->file('image');
-       $image->storeAs('public/leader', $image->hashName());
-
+    
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image->storeAs('public/leader', $image->hashName());
+            $leader->update(['image' => $image->hashName()]);
+        }
+    
         $leader->update([
             'name' => $request->input('name'),
             'telp' => $request->input('telp'),
-            'image' => $image->hashName(),
         ]);
-
-        if($leader){
+    
+        if ($leader) {
             //redirect dengan pesan sukses
             return redirect()->route('admin.leader.index')->with(['success' => 'Data Berhasil Diupdate!']);
-        }else{
+        } else {
             //redirect dengan pesan error
             return redirect()->route('admin.leader.index')->with(['error' => 'Data Gagal Diupdate!']);
         }
-
     }
+    
 
     public function destroy($id)
     {

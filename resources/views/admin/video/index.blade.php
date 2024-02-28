@@ -10,7 +10,7 @@
         <div class="section-body">
 
             <div class="card">
-                <div class="card-header">
+                <div class="card-header flex-wrap">
                     <h4><i class="fas fa-video"></i> Video</h4>
                 </div>
 
@@ -38,6 +38,7 @@
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
                                 <th scope="col">JUDUL VIDEO</th>
+                                <th scope="col">DESKRIPSI</th>
                                 <th scope="col">VIDEO</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
@@ -47,6 +48,7 @@
                                 <tr>
                                     <th scope="row" style="text-align: center">{{ ++$no + ($videos->currentPage()-1) * $videos->perPage() }}</th>
                                     <td>{{ $video->title }}</td>
+                                    <td>{!! $video->desc !!}</td>
                                     <td class="text-center">
                                         <iframe width="300" height="150" src="{{ $video->embed }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </td>

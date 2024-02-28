@@ -10,7 +10,7 @@
             <div class="section-body">
                 <div class="card">
                     <div class="card-header">
-                        <h4><i class="fas fa-bell"></i> TAMBAH KAS MASUK</h4>
+                        <h4><i class="fa-solid fa-money-check"></i> TAMBAH KAS MASUK</h4>
                     </div>
 
                     <div class="card-body">

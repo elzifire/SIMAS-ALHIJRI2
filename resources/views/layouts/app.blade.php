@@ -62,7 +62,7 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="index.html">SIMAS</a>
+                        <a href="#">SIMAS</a>
                     </div>
                     {{-- <div class="sidebar-brand sidebar-brand-sm">
                         <a href="index.html">SMK</a>
@@ -103,10 +103,16 @@
                                 <span>Agenda</span></a></li>
                         @endcan
 
-                        @can('events.index')
+                        @can('leaders.index')
                         <li class="{{ setActive('admin/leader') }}"><a class="nav-link"
                                 href="{{ route('admin.leader.index') }}"><i class="fas fa-person-praying"></i>
                                 <span>Imam</span></a></li>
+                        @endcan
+                            
+                        @can('muadzins.index')
+                        <li class="{{ setActive('admin/muadzin') }}"><a class="nav-link"
+                                href="{{ route('admin.muadzin.index') }}"><i class="fa-solid fa-person"></i>
+                                <span>Muadzin</span></a></li>
                         @endcan
 
                         @can('moneys.index')
@@ -126,6 +132,12 @@
                                 href="{{ route('admin.photo.index') }}"><i class="fas fa-image"></i>
                                 <span>Foto</span></a></li>
                         @endcan
+
+                        {{-- @can('managements.index')
+                        <li class="{{ setActive('admin/management') }}"><a class="nav-link"
+                                href="{{ route('admin.management.index') } }"><i class="fas fa-image"></i>
+                                <span>Foto</span></a></li>
+                        @endcan --}}
 
                         @can('videos.index')
                         <li class="{{ setActive('admin/video') }}"><a class="nav-link"

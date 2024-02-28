@@ -52,12 +52,14 @@ class VideoController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'embed' => 'required'
+            'embed' => 'required',
+            'desc' => 'required',
         ]);
 
         $video = Video::create([
             'title' => $request->input('title'),
-            'embed' => $request->input('embed')
+            'embed' => $request->input('embed'),
+            'desc' => $request->input('desc'),
         ]);
 
         if($video){
@@ -91,13 +93,15 @@ class VideoController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'embed' => 'required'
+            'embed' => 'required',
+            'desc' => 'required',
         ]);
 
         $video = Video::findOrFail($video->id);
         $video->update([
             'title' => $request->input('title'),
-            'embed' => $request->input('embed')
+            'embed' => $request->input('embed'),
+            'desc' => $request->input('desc'),
         ]);
 
         if($video){

@@ -4,25 +4,25 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tambah Video</h1>
+                <h1>Tambah Muadzin</h1>
             </div>
 
             <div class="section-body">
 
                 <div class="card">
                     <div class="card-header">
-                        <h4><i class="fas fa-video"></i> Tambah Video</h4>
+                        <h4><i class="fa-solid fa-person"></i>Tambah Muadzin</h4>
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('admin.video.store') }}" method="POST">
+                        <form action="{{ route('admin.muadzin.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
-                                <label>JUDUL VIDEO</label>
-                                <input type="text" name="title" value="{{ old('title') }}" placeholder="Masukkan Judul Video" class="form-control @error('title') is-invalid @enderror">
+                                <label>NAMA IMAM</label>
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Masukkan Nama Imam" class="form-control @error('name') is-invalid @enderror">
 
-                                @error('title')
+                                @error('name')
                                 <div class="invalid-feedback" style="display: block">
                                     {{ $message }}
                                 </div>
@@ -30,10 +30,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label>DESKRIPSI</label>
-                                <input type="text" name="desc" id="text" value="{{ old('desc') }}" placeholder="Masukkan Deskripsi Video" class="form-control @error('desc') is-invalid @enderror">
-
-                                @error('desc')
+                                <label>NOMOR TELEPON</label>
+                                <input type="text" name="telp"  placeholder="Masukkan Nomor WhatsApp"  value="{{ old('telp') }}" class="form-control @error('telp') is-invalid @enderror">
+                                @error('telp')
                                 <div class="invalid-feedback" style="display: block">
                                     {{ $message }}
                                 </div>
@@ -41,10 +40,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label>EMBED YOUTUBE</label>
-                                <input type="text" name="embed" value="{{ old('embed') }}" placeholder="Masukkan Embed YouTube" class="form-control @error('embed') is-invalid @enderror">
-
-                                @error('embed')
+                                <label>FOTO</label>
+                                <input type="file" name="image"  placeholder="Masukkan Foto" class="form-control @error('image') is-invalid @enderror">
+                                @error('image')
                                 <div class="invalid-feedback" style="display: block">
                                     {{ $message }}
                                 </div>
@@ -60,14 +58,5 @@
             </div>
         </section>
     </div>
-    <script src="https://cdn.tiny.cloud/1/31fk3dv7kvw3biknorel2anuvrzy0iivkk4x02kgiek0ygc1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
-
-<script>
-  tinymce.init({
-    selector: '#text',
-    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-  });
-</script>
 @stop

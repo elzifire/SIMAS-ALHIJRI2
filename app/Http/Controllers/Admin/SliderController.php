@@ -43,6 +43,7 @@ class SliderController extends Controller
     {
         $this->validate($request, [
             'image'     => 'required|image',
+            'link' => 'nullable',
         ]);
 
         //upload image
@@ -51,6 +52,7 @@ class SliderController extends Controller
 
         $slider = Slider::create([
             'image'     => $image->hashName(),
+            'link' => $request->input('link'),
         ]);
 
         if($slider){
