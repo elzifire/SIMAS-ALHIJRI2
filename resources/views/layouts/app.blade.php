@@ -115,6 +115,19 @@
                                 <span>Muadzin</span></a></li>
                         @endcan
 
+                        @can('managements.index')
+                        <li class="{{ setActive('admin/management') }}"><a class="nav-link"
+                                href="{{ route('admin.management.index') }}"><i class="fa-solid fa-users"></i>
+                                <span>Pejabat</span></a></li>
+                        @endcan
+
+                        {{-- @can('contacts.index')
+                        <li class="{{ setActive('admin/contact') }}"><a class="nav-link"
+                                href="{{ route('admin.contact.index') }}"><i class="fa-solid fa-users"></i>
+                                <span>Contact</span></a></li>
+                        @endcan --}}
+
+
                         @can('moneys.index')
                         <li class="{{ setActive('admin/money') }}"><a class="nav-link"
                             href="{{ route('admin.money.index') }}"><i class="fas fa-money-bill"></i>
@@ -133,11 +146,7 @@
                                 <span>Foto</span></a></li>
                         @endcan
 
-                        {{-- @can('managements.index')
-                        <li class="{{ setActive('admin/management') }}"><a class="nav-link"
-                                href="{{ route('admin.management.index') } }"><i class="fas fa-image"></i>
-                                <span>Foto</span></a></li>
-                        @endcan --}}
+                        
 
                         @can('videos.index')
                         <li class="{{ setActive('admin/video') }}"><a class="nav-link"

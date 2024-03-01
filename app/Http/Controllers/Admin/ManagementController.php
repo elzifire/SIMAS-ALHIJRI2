@@ -28,6 +28,7 @@ class ManagementController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'position' => 'required',
         ]);
 
         //upload image
@@ -36,6 +37,7 @@ class ManagementController extends Controller
 
         $photo = Management::create([
             'name' => $request->input('name'),
+            'position' => $request->input('position'),
             'image' => $image->hashName(),
         ]);
 

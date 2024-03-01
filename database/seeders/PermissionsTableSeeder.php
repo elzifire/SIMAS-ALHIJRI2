@@ -91,5 +91,16 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'managements.create']);
         Permission::create(['name' => 'managements.delete']);
 
+        // Permission for Contact
+        Permission::create(['name' => 'contacts.create']);
+        Permission::create(['name' => 'contacts.index']);
+        Permission::create(['name' => 'contacts.edit']);
+        Permission::create(['name' => 'contacts.delete']);
+
+        // Permission Profil
+        Permission::create(['name' => 'profils.create']);
+        Permission::create(['name' => 'profils.index']);
+        Permission::create(['name' => 'profils.edit']);
+        Permission::create(['name' => 'profils.delete']);
     }
 }

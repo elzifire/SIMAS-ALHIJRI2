@@ -51,3 +51,15 @@ Route::get('/homepage/video', [App\Http\Controllers\Api\VideoController::class, 
 
 //money
 Route::get('/money', [\App\Http\Controllers\Api\MoneyController::class, 'index']);
+
+// muadzin
+Route::get('/muadzin', [App\Http\Controllers\Api\MuadzinController::class, 'index']);
+Route::get('/homepage/muadzin', [App\Http\Controllers\Api\MuadzinController::class, 'MuadzinHomePage']);
+
+// leader
+Route::get('/leader', [App\Http\Controllers\Api\LeaderController::class, 'index']);
+Route::get('/homepage/leader', [App\Http\Controllers\Api\LeaderController::class, 'LeaderHomePage']);
+
+// management
+Route::get('/management', [App\Http\Controllers\Api\ManagementController::class, 'index']);
+Route::get('/homepage/management', [App\Http\Controllers\Api\ManagementController::class, 'LeaderHomePage']);

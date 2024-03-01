@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\MuadzinController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ContactController;
 
 
 Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'ShowLoginForm']);
@@ -73,7 +74,10 @@ Route::prefix('admin')->group(function () {
         
         //management
         Route::resource('/management', \App\Http\Controllers\Admin\ManagementController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
-            
+        
+        // contact
+        Route::resource('/contact', \App\Http\Controllers\Admin\ContactController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
+        
     });
 
 });

@@ -4,101 +4,69 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Pejabat</h1>
+            <h1>List Contact</h1>
         </div>
 
         <div class="section-body">
 
-            @can('managements.create')
-                <div class="card">
-                    <div class="card-header">
-                        <h4>UPLOAD PEJABAT</h4>
-                    </div>
-
-                    <div class="card-body">
-
-                        <form action="{{ route('admin.management.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="form-group">
-                                <label>NAMA</label>
-                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Masukkan NAMA" class="form-control @error('name') is-invalid @enderror">
-
-                                @error('name')
-                                <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>JABATAN</label>
-                                <input type="text" name="position" value="{{ old('position') }}" placeholder="Masukkan Jabatan" class="form-control @error('position') is-invalid @enderror">
-
-                                @error('position')
-                                <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>FOTO</label>
-                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
-
-                                @error('image')
-                                <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-upload"></i> UPLOAD</button>
-                            <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
-
-
-                        </form>
-
-                    </div>
-                </div>
-            @endcan
-
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-image"></i> Foto</h4>
+                    <h4><i class="fa-solid fa-person"></i> List Contact</h4>
                 </div>
 
                 <div class="card-body">
-                    
+                    <form action="{{ route('admin.contact.index') }}" method="GET">
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                @can('contacts.create')
+                                    <div class="input-group-prepend">
+                                        <a href="{{ route('admin.contact.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
+                                    </div>
+                                @endcan
+                                <input type="text" class="form-control" name="q"
+                                       placeholder="cari berdasarkan nama contact">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">NAMA</th> 
-                                <th scope="col">FOTO</th>
-                                <th scope="col" style="width: 15%;text-align: center">AKSI</th>
+                                <th scope="col">NAMA </th>
+                                <th scope="col">NOMOR TELEPON</th>
+                                <th scope="col" style="text-align: center">AKSI</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($managements as $no => $management)
+                                @foreach ($contacts as $no => $contact)
                                 <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($managements->currentPage()-1) * $managements->perPage() }}</th>
-                                    <td>{{ $management->name }}</td>
-                                    <td><img src="{{ $management->image }}" style="width: 150px"></td>
+                                    <th scope="row" style="text-align: center">{{ ++$no + ($contacts->currentPage()-1) * $contacts->perPage() }}</th>
+                                    <td>{{ $contact->name }}</td>
+                                    <td>{{ $contact->telp }}</td>
                                     <td class="text-center">
-                                        @can('managements.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $management->id }}">
+                                        @can('contact.edit')
+                                            <a href="{{ route('admin.contact.edit', $contact->id) }}" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                        @endcan
+
+                                        @can('contact.delete')
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $contact->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                       @endcan
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                         <div style="text-align: center">
-                            {{$managements->links("vendor.pagination.bootstrap-4")}}
+                            {{$contacts->links("vendor.pagination.bootstrap-4")}}
                         </div>
                     </div>
                 </div>
@@ -127,10 +95,9 @@
             }).then(function(isConfirm) {
                 if (isConfirm) {
 
-
                     //ajax delete
                     jQuery.ajax({
-                        url: "/admin/management/"+id,
+                        url: "/admin/contact/"+id,
                         data:     {
                             "id": id,
                             "_token": token
