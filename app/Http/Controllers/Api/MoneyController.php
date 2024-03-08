@@ -21,6 +21,7 @@ class MoneyController extends Controller
             ->whereMonth('created_at', $now->month)
             ->whereYear('created_at', $now->year)
             ->first();
+        // first for get end record 
 
         return response()->json([
             "response" => [

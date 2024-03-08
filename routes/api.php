@@ -19,13 +19,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-//posts
+//modul posts 
 Route::get('/post', [App\Http\Controllers\Api\PostController::class, 'index']);
 Route::get('/post/{id?}', [App\Http\Controllers\Api\PostController::class, 'show']);
 Route::get('/homepage/post', [App\Http\Controllers\Api\PostController::class, 'PostHomePage']);
 
 
-//events
+//modul events
 Route::get('/event', [App\Http\Controllers\Api\EventController::class, 'index']);
 Route::get('/event/{slug?}', [App\Http\Controllers\Api\EventController::class, 'show']);
 Route::get('/homepage/event', [App\Http\Controllers\Api\EventController::class, 'EventHomePage']);
