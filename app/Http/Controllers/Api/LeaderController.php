@@ -11,6 +11,8 @@ class LeaderController extends Controller
     public function index()
     {
         $leaders = Leader::latest()->paginate(6);
+        // variabel = NAMACLASS 
+        // LATEST = SELECT * FROM NAMA TABEL ORDER BY ASC WHERE PAGINATION 6 
         return response()->json([
             "response" => [
                 "status"    => 200,

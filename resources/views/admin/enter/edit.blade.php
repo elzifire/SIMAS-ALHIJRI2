@@ -14,29 +14,23 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.money.update', $money->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.enter.update', $enter->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
                         <div class="form-group">
                             <label for="jumlah">KETERANGAN</label>
-                            <input type="number" class="form-control" id="jumlah" name="keterangan" min="0" value="{{ $money->keterangan }}" required>
+                            <input type="text" class="form-control" id="jumlah" name="name"  value="{{ $enter->name }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="jumlah">JUMLAH (Rp):</label>
-                            <input type="number" class="form-control" id="jumlah" name="jumlah" min="0" value="{{ $money->jumlah }}" required>
+                            <input type="number" class="form-control" id="jumlah" name="balance" min="0" value="{{ $enter->balance }}" required>
                         </div>
-                        <div class="form-group">
-                            <label for="jenis">Jenis KAS Masuk:</label>
-                            <select name="jenis" id="jenis" class="form-control" required>
-                                <option value="masuk" {{ $money->jenis == 'masuk' ? 'selected' : '' }}>Masuk</option>
-                                <option value="keluar" {{ $money->jenis == 'keluar' ? 'selected' : '' }}>Keluar</option>
-                            </select>
-                        </div>
+                        
                         <div class="form-group">
                             <label for="tanggal">Tanggal:</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $money->tanggal }}" required>
+                            <input type="date" class="form-control" id="tanggal" name="date" value="{{ $enter->date }}" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>

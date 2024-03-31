@@ -42,7 +42,9 @@ Route::get('/category', [App\Http\Controllers\Api\CategoryController::class, 'in
 Route::get('/category/{slug?}', [App\Http\Controllers\Api\CategoryController::class, 'show']);
 
 //photo
-Route::get('/photo', [App\Http\Controllers\Api\PhotoController::class, 'index']);
+// Route::get('/photo', [App\Http\Controllers\Api\PhotoController::class, 'index']);
+Route::post('/photo', [App\Http\Controllers\Api\PhotoController::class, 'index']);
+
 Route::get('/homepage/photo', [App\Http\Controllers\Api\PhotoController::class, 'PhotoHomepage']);
 
 //video
@@ -50,7 +52,7 @@ Route::get('/video', [App\Http\Controllers\Api\VideoController::class, 'index'])
 Route::get('/homepage/video', [App\Http\Controllers\Api\VideoController::class, 'VideoHomepage']);
 
 //money
-Route::get('/money', [\App\Http\Controllers\Api\MoneyController::class, 'index']);
+Route::get('/homepage/money', [\App\Http\Controllers\Api\MoneyController::class, 'MoneyHomePage']);
 
 // muadzin
 Route::get('/muadzin', [App\Http\Controllers\Api\MuadzinController::class, 'index']);

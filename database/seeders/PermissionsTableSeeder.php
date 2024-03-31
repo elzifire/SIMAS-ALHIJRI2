@@ -75,10 +75,10 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'users.edit']);
         Permission::create(['name' => 'users.delete']);
 
-        Permission::create(['name' => 'moneys.index']);
-        Permission::create(['name' => 'moneys.create']);
-        Permission::create(['name' => 'moneys.edit']);
-        Permission::create(['name' => 'moneys.delete']);
+        Permission::create(['name' => 'enters.index']);
+        Permission::create(['name' => 'enters.create']);
+        Permission::create(['name' => 'enters.edit']);
+        Permission::create(['name' => 'enters.delete']);
 
         // muadzin
         Permission::create(['name' => 'muadzins.create']);

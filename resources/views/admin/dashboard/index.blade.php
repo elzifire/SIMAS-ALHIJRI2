@@ -18,7 +18,7 @@
                     <h4>UANG MASUK</h4>
                 </div>
                 <div class="card-body">
-                    Rp.{{ number_format(App\Models\Money::latest()->first()->saldo ?? '0', 0, ',', '.') }}
+                    {{-- Rp.{{ number_format(App\Models\Money::latest()->first()->saldo ?? '0', 0, ',', '.') }} --}}
                 </div>
             </div>
             
@@ -34,7 +34,7 @@
                     <h4>UANG KELUAR</h4>
                 </div>
                 <div class="card-body">
-                    Rp.{{ number_format(App\Models\Money::latest()->first()->total_keluar ?? '0', 0, ',', '.') }}
+                    {{-- Rp.{{ number_format(App\Models\Money::latest()->first()->total_keluar ?? '0', 0, ',', '.') }} --}}
                 </div>
             </div>
             

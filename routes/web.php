@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\EventController;
-use App\Http\Controllers\Admin\MoneyController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\LeaderController;
@@ -20,7 +19,10 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ContactController;
-
+use App\Http\Controllers\Admin\EnterController;
+use App\Http\Controllers\Admin\OutController;
+use App\Models\Money_keluar;
+use App\Models\Money_masuk;
 
 Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'ShowLoginForm']);
 
@@ -66,9 +68,12 @@ Route::prefix('admin')->group(function () {
         //slider
         Route::resource('/slider', \App\Http\Controllers\Admin\SliderController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
 
-        // money
-        Route::resource('/money', \App\Http\Controllers\Admin\MoneyController::class, ['except' => 'show', 'as' => 'admin']);
-        
+        // money enter
+        Route::resource('/enter', \App\Http\Controllers\Admin\EnterController::class, ['except' => 'show', 'as' => 'admin']);
+
+        // money out
+        Route::resource('/out',  OutController::class, ['except' => 'show' ,'as' => 'admin']);
+
         //muadzin 
         Route::resource('/muadzin', \App\Http\Controllers\Admin\MuadzinController::class, ['except' => 'show', 'as' => 'admin']);
         
