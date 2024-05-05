@@ -24,7 +24,7 @@ class LeaderController extends Controller
 
     public function LeaderHomePage()
     {
-        $leaders = Leader::latest()->take(2)->get();
+        $leaders = Leader::latest()->get();
         return response()->json([
             "response" => [
                 "status"    => 200,

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// use App\Models\Money;
-// use Illuminate\Support\Facades\DB;   
+use App\Models\Enter;
+use App\Models\Out;
 
 class DashboardController extends Controller
 {
@@ -15,7 +15,12 @@ class DashboardController extends Controller
      * @return void
      */
     public function index()
-    {       
-        return view('admin.dashboard.index');
+    {   
+
+        $moneyIn = Enter::sum('balance');
+        $moneyOut = Out::sum('balance');
+        $saldo = $moneyIn - $moneyOut;
+        
+        return view('admin.dashboard.index', compact('moneyIn', 'moneyOut', 'saldo'));
     }
 }

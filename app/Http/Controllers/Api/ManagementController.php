@@ -10,7 +10,7 @@ class ManagementController extends Controller
 {
     public function index()
     {
-        $managements = Management::latest()->paginate(6);
+        $managements = Management::latest()->get();
         return response()->json([
             "response" => [
                 "status"    => 200,

@@ -119,6 +119,13 @@
                                     <span>Pejabat</span></a></li>
                         @endcan
 
+                        @can('managements.index')
+                            <li class="{{ setActive('admin/visi') }}"><a class="nav-link"
+                                    href="{{ route('admin.visi.index') }}"><i class="fa-solid fa-rocket"></i>
+                                    <span>Visi dan Misi</span></a></li>
+                            
+                        @endcan
+
                         {{-- @can('contacts.index')
                         <li class="{{ setActive('admin/contact') }}"><a class="nav-link"
                                 href="{{ route('admin.contact.index') }}"><i class="fa-solid fa-users"></i>

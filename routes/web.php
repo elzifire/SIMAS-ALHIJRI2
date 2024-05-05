@@ -23,6 +23,14 @@ use App\Http\Controllers\Admin\EnterController;
 use App\Http\Controllers\Admin\OutController;
 use App\Models\Money_keluar;
 use App\Models\Money_masuk;
+use App\Http\Controllers\Admin\VisiController;
+
+
+
+
+
+
+
 
 Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'ShowLoginForm']);
 
@@ -82,6 +90,9 @@ Route::prefix('admin')->group(function () {
         
         // contact
         Route::resource('/contact', \App\Http\Controllers\Admin\ContactController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
+        
+        // visi dan misi
+        Route::resource('/visi', \App\Http\Controllers\Admin\VisiController::class, ['except' => 'show' ,'as' => 'admin']);
         
     });
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\VisiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +66,6 @@ Route::get('/homepage/leader', [App\Http\Controllers\Api\LeaderController::class
 // management
 Route::get('/management', [App\Http\Controllers\Api\ManagementController::class, 'index']);
 Route::get('/homepage/management', [App\Http\Controllers\Api\ManagementController::class, 'LeaderHomePage']);
+
+// visi
+Route::get('/visi', [\App\Http\Controllers\Api\VisiContoller::class, 'index']);

@@ -11,7 +11,7 @@ class MuadzinController extends Controller
     //
     public function index()
     {
-        $muadzins = Muadzin::latest()->paginate(6);
+        $muadzins = Muadzin::latest();
         return response()->json([
             "response" => [
                 "status"    => 200,
@@ -23,7 +23,7 @@ class MuadzinController extends Controller
 
     public function MuadzinHomePage()
     {
-        $muadzins = Muadzin::latest()->take(2)->get();
+        $muadzins = Muadzin::latest()->get();
         return response()->json([
             "response" => [
                 "status"    => 200,
