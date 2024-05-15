@@ -33,7 +33,7 @@
 
                             <div class="form-group">
                                 <label>LINK</label>
-                                <input type="url" name="link" class="form-control @error('link') is-invalid @enderror">
+                                <input type="text" name="link" class="form-control @error('link') is-invalid @enderror">
 
                                 @error('link')
                                 <div class="invalid-feedback" style="display: block">

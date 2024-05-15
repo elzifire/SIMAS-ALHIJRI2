@@ -108,7 +108,7 @@
                                             <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $photo->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                             1           @endcan
+                                      @endcan
                                     </td>
                                 </tr>
                             @endforeach

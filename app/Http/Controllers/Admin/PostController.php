@@ -61,7 +61,6 @@ class PostController extends Controller
             'title'         => 'required|unique:posts',
             'category_id'   => 'required',
             'content'       => 'required',
-            'bahasa'  => 'required',
         ]);
 
         //upload image
@@ -73,8 +72,7 @@ class PostController extends Controller
             'title'       => $request->input('title'),
             'slug'        => Str::slug($request->input('title'), '-'),
             'category_id' => $request->input('category_id'),
-            'content'     => $request->input('content'),
-            'bahasa' =>$request->input('bahasa'),
+            'content'     => $request->input('content')  
         ]);
 
         //assign tags
@@ -110,7 +108,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */ 
+     */
     public function update(Request $request, Post $post)
     {
         $this->validate($request,[
@@ -161,7 +159,6 @@ class PostController extends Controller
         }
     }
 
-    
     /**
      * Remove the specified resource from storage.
      *

@@ -44,7 +44,7 @@ Route::get('/category/{slug?}', [App\Http\Controllers\Api\CategoryController::cl
 
 //photo
 // Route::get('/photo', [App\Http\Controllers\Api\PhotoController::class, 'index']);
-Route::post('/photo', [App\Http\Controllers\Api\PhotoController::class, 'index']);
+Route::get('/photo', [App\Http\Controllers\Api\PhotoController::class, 'index']);
 
 Route::get('/homepage/photo', [App\Http\Controllers\Api\PhotoController::class, 'PhotoHomepage']);
 
