@@ -1,80 +1,77 @@
 @extends('layouts.app')
 
 @section('content')
+
+
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>List Contact</h1>
+            <h1>Kontak</h1>
         </div>
-
         <div class="section-body">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-phone"></i> Kontak</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('admin.contact.store') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" name="name"  placeholder="Masukkan nama" class="form-control @error('name') is-invalid @enderror">
+                            @error('name')
+                            <div class="invalid-feedback" style="display: block">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor Telepon</label>
+                            <input type="tel" name="phone"  placeholder="Masukkan nomor" class="form-control @error('telp') is-invalid @enderror">
+                            @error('telp')
+                            <div class="invalid-feedback" style="display: block">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+        </div>
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fa-solid fa-person"></i> List Contact</h4>
+                    <h4><i class="fas fa-phone"></i> Kontak</h4>
                 </div>
-
                 <div class="card-body">
-                    <form action="{{ route('admin.contact.index') }}" method="GET">
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                @can('contacts.create')
-                                    <div class="input-group-prepend">
-                                        <a href="{{ route('admin.contact.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
-                                    </div>
-                                @endcan
-                                <input type="text" class="form-control" name="q"
-                                       placeholder="cari berdasarkan nama contact">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                     <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
+                        <table class="table table-bordered table-md">
                             <tr>
-                                <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">NAMA </th>
-                                <th scope="col">NOMOR TELEPON</th>
-                                <th scope="col" style="text-align: center">AKSI</th>
+                                <th>#</th>
+                                <th>Nama</th>
+                                <th>Nomor Telepon</th>
+                                <th>Action</th>
                             </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($contacts as $no => $contact)
-                                <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($contacts->currentPage()-1) * $contacts->perPage() }}</th>
-                                    <td>{{ $contact->name }}</td>
-                                    <td>{{ $contact->telp }}</td>
-                                    <td class="text-center">
-                                        @can('contact.edit')
-                                            <a href="{{ route('admin.contact.edit', $contact->id) }}" class="btn btn-sm btn-primary">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </a>
-                                        @endcan
-
-                                        @can('contact.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $contact->id }}">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        @endcan
-                                    </td>
-                                </tr>
+                            @foreach ($contacts as $contact)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $contact->name }}</td>
+                                <td>{{ $contact->phone }}</td>
+                                <td class="text-center">
+                                    <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $contact->id }}">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                            
+                                </td>
+                            </tr>
                             @endforeach
-                            </tbody>
                         </table>
-                        <div style="text-align: center">
-                            {{$contacts->links("vendor.pagination.bootstrap-4")}}
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
     </section>
 </div>
+
 
 <script>
     //ajax delete
@@ -94,6 +91,7 @@
                 dangerMode: true,
             }).then(function(isConfirm) {
                 if (isConfirm) {
+
 
                     //ajax delete
                     jQuery.ajax({
@@ -138,4 +136,5 @@
             })
         }
 </script>
+
 @stop

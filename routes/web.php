@@ -93,6 +93,9 @@ Route::prefix('admin')->group(function () {
         
         // visi dan misi
         Route::resource('/visi', \App\Http\Controllers\Admin\VisiController::class, ['except' => 'show' ,'as' => 'admin']);
+
+        // Service
+        Route::resource('/service', \App\Http\Controllers\Admin\ServiceController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
         
     });
 

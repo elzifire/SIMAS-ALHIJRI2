@@ -69,3 +69,9 @@ Route::get('/homepage/management', [App\Http\Controllers\Api\ManagementControlle
 
 // visi
 Route::get('/visi', [\App\Http\Controllers\Api\VisiContoller::class, 'index']);
+
+// route for contact
+Route::get('contact', [App\Http\Controllers\Api\ContactController::class, 'index']);
+
+// route for service
+Route::get('service', [App\Http\Controllers\Api\ServiceController::class, 'index']);

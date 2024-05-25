@@ -126,11 +126,18 @@
                             
                         @endcan
 
-                        {{-- @can('contacts.index')
-                        <li class="{{ setActive('admin/contact') }}"><a class="nav-link"
-                                href="{{ route('admin.contact.index') }}"><i class="fa-solid fa-users"></i>
-                                <span>Contact</span></a></li>
-                        @endcan --}}
+                        @can('services.index')
+                            <li class="{{ setActive('admin/service') }}"><a class="nav-link"
+                                    href="{{ route('admin.service.index') }}"><i class="fa-solid fa-handshake"></i>
+                                    <span>Layanan</span></a></li>
+                            
+                        @endcan
+
+                        @can('contacts.index')
+                            <li class="{{ setActive('admin/contact') }}"><a class="nav-link"
+                                    href="{{ route('admin.contact.index') }}"><i class="fa-solid fa-phone"></i>
+                                    <span>Kontak</span></a></li>
+                        @endcan
 
 
 
