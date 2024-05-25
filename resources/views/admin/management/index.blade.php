@@ -75,7 +75,8 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">NAMA</th> 
+                                <th scope="col">NAMA</th>
+                                <th scope="col">JABATAN</th> 
                                 <th scope="col">FOTO</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
@@ -83,8 +84,9 @@
                             <tbody>
                             @foreach ($managements as $no => $management)
                                 <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($managements->currentPage()-1) * $managements->perPage() }}</th>
+                                    <th scope="row" style="text-align: center">{{ $loop->iteration }}</th>
                                     <td>{{ $management->name }}</td>
+                                    <td>{{ $management->position }}</td>
                                     <td><img src="{{ $management->image }}" style="width: 150px"></td>
                                     <td class="text-center">
                                         @can('managements.delete')
@@ -97,9 +99,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <div style="text-align: center">
-                            {{$managements->links("vendor.pagination.bootstrap-4")}}
-                        </div>
+                        
                     </div>
                 </div>
             </div>
