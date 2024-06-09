@@ -6,28 +6,18 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Photo extends Model
+class CategoriesPhoto extends Model
 {
     use HasFactory;
 
-        /**
-     * guarded
-     *
-     * @var array
-     */
     protected $guarded = [];
 
-    /**
-     * image
-     *
-     * @return Attribute
-     */
-    public function category()
+    public function photos()
     {
-        return $this->belongsTo(CategoriesPhoto::class);
+        return $this->hasMany(Photo::class);
     }
 
-    protected function image(): Attribute
+    public function image(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => asset('/storage/photos/' . $value),

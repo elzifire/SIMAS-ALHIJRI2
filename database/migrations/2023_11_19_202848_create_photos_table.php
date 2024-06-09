@@ -11,12 +11,24 @@ return new class extends Migration
      */
     public function up(): void
 {
+
+  Schema::create('categories_photos', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->string('slug');
+    $table->text('desc');
+    $table->date('date');
+    $table->string('image');
+    $table->timestamps();
+  });
+
   Schema::create('photos', function (Blueprint $table) {
     $table->id();
     $table->string('image');
     $table->string('heading');
-    $table->string('caption');
+    $table->text('caption');
     $table->date('date');
+    $table->bigInteger('category_id')->foreign('category_id')->references('id')->on('categories_photos')->onDelete('cascade');
     $table->timestamps();
   });
 }

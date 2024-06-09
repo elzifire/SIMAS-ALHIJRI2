@@ -32,7 +32,7 @@ class PhotoController extends Controller
      */
     public function PhotoHomePage()
     {
-        $photos = Photo::latest()->take(2)->get();
+        $photos = Photo::latest()->take(6)->get();
         return response()->json([
             "response" => [
                 "status"    => 200,

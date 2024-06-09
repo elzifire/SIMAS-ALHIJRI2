@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CategoriesPhoto;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
@@ -32,7 +33,9 @@ class PhotoController extends Controller
             })
             ->paginate(10);
 
-        return view('admin.photo.index', compact('photos'));
+        $categories = CategoriesPhoto::all();
+
+        return view('admin.photo.index', compact('photos', 'categories'));
     }
 
     /**

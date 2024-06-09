@@ -96,6 +96,9 @@ Route::prefix('admin')->group(function () {
 
         // Service
         Route::resource('/service', \App\Http\Controllers\Admin\ServiceController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
+
+        // categories_photo
+        Route::resource('/categories_photo', \App\Http\Controllers\Admin\CategoriesPhotoController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
         
     });
 
