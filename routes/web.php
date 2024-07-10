@@ -72,6 +72,9 @@ Route::prefix('admin')->group(function () {
         
         //video
         Route::resource('/video', \App\Http\Controllers\Admin\VideoController::class, ['except' => 'show' ,'as' => 'admin']);
+
+        // categories_video
+        Route::resource('/category_video', \App\Http\Controllers\Admin\CategoryVideoController::class, ['except' => 'show' ,'as' => 'admin']);
     
         //slider
         Route::resource('/slider', \App\Http\Controllers\Admin\SliderController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
@@ -100,6 +103,7 @@ Route::prefix('admin')->group(function () {
         // categories_photo
         Route::resource('/categories_photo', \App\Http\Controllers\Admin\CategoriesPhotoController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
         
+
     });
 
 });

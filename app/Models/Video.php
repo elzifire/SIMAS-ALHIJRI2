@@ -15,4 +15,14 @@ class Video extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * category
+     *
+     * @return void
+     */
+    public function category()
+    {
+        return $this->belongsTo(CategoryVideo::class);
+    }
 }

@@ -165,12 +165,12 @@
                         @endif
 
 
-                        {{-- categories_photo --}}
+                        {{-- categories_photo
                         @can('photos.index')
                             <li class="{{ setActive('admin/category_photo') }}"><a class="nav-link"
                                     href="{{ route('admin.categories_photo.index') }}"><i class="fas fa-folder"></i>
                                     <span>Kategori Foto</span></a></li>
-                        @endcan
+                        @endcan --}}
                         
                         @can('photos.index')
                             <li class="{{ setActive('admin/photo') }}"><a class="nav-link"
@@ -178,7 +178,13 @@
                                     <span>Foto</span></a></li>
                         @endcan
 
-
+                         {{-- category_video --}}
+                         @can('category_videos.index')
+                            <li class="{{ setActive('admin/category_video') }}"><a class="nav-link"
+                                    href="{{ route('admin.category_video.index') }}"><i class="fas fa-folder"></i>
+                                    <span>Kategori Video</span></a></li>
+                         @endcan
+                    
 
                         @can('videos.index')
                             <li class="{{ setActive('admin/video') }}"><a class="nav-link"

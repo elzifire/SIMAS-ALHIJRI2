@@ -49,6 +49,12 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'photos.create']);
         Permission::create(['name' => 'photos.delete']);
 
+        // permission for category_video
+        Permission::create(['name' => 'category_videos.index']);
+        Permission::create(['name' => 'category_videos.create']);
+        Permission::create(['name' => 'category_videos.edit']);
+        Permission::create(['name' => 'category_videos.delete']);
+
         //permission for videos
         Permission::create(['name' => 'videos.index']);
         Permission::create(['name' => 'videos.create']);

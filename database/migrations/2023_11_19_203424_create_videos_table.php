@@ -11,12 +11,18 @@ return new class extends Migration
      */
     public function up(): void
 {
+
+  
+
   Schema::create('videos', function (Blueprint $table) {
     $table->id();
     $table->string('title');
     $table->string('embed');
     $table->string('desc');
+    $table->unsignedBigInteger('category_id');
     $table->timestamps();
+
+    $table->foreign('category_id')->references('id')->on('category_videos')->onDelete('cascade')->onUpdate('cascade');
   });
 }
 
