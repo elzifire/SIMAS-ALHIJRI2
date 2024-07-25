@@ -40,7 +40,7 @@ class CategoryVideoController extends Controller
         ]);
 
         if ($categoryVideo) {
-            return redirect()->route('admin.category_videos.index')->with('success', 'Category Video created successfully');
+            return redirect()->route('admin.category_video.index')->with('success', 'Category Video created successfully');
         }else{
             return redirect()->route('admin.category_videos.index')->with('error', 'Category Video failed to be created');
         }
