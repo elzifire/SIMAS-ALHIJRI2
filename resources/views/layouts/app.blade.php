@@ -242,7 +242,7 @@
 
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2023 <div class="bullet"></div> SIMAS <div class="bullet"></div> All Rights
+                    Copyright &copy; 2024 <div class="bullet"></div> SIMAS <div class="bullet"></div> All Rights
                     Reserved.
                 </div>
                 <div class="footer-right">

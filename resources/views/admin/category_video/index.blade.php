@@ -54,9 +54,16 @@
                                         @endcan
                                         
                                         @can('category_videos.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $video->id }}">
+                                            {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $video->id }}">
                                                 <i class="fa fa-trash"></i>
-                                            </button>
+                                            </button> --}}
+                                            <form action="{{ route('admin.category_video.destroy', $video->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
                                         @endcan
                                     </td>
                                 </tr>

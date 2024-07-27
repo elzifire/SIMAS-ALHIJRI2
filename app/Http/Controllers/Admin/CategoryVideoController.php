@@ -63,11 +63,27 @@ class CategoryVideoController extends Controller
         ]);
 
         if ($categoryVideo) {
-            return redirect()->route('admin.category_videos.index')->with('success', 'Category Video updated successfully');
+            return redirect()->route('admin.category_video.index')->with('success', 'Category Video updated successfully');
         }else{
             return redirect()->route('admin.category_videos.index')->with('error', 'Category Video failed to be updated');
         }
     }
+
+    // public function destroy($id)
+    // {
+    //     $categoryVideo = CategoryVideo::findOrFail($id);
+    //     $categoryVideo->delete();
+
+    //     if ($categoryVideo) {
+    //         return response()->json([
+    //             'status' => 'success',
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error',
+    //         ]);
+    //     }
+    // }
 
     public function destroy($id)
     {
@@ -75,13 +91,9 @@ class CategoryVideoController extends Controller
         $categoryVideo->delete();
 
         if ($categoryVideo) {
-            return response()->json([
-                'status' => 'success',
-            ]);
+            return redirect()->route('admin.category_video.index')->with('success', 'Category Video deleted successfully');
         }else{
-            return response()->json([
-                'status' => 'error',
-            ]);
+            return redirect()->route('admin.category_videos.index')->with('error', 'Category Video failed to be deleted');
         }
     }
 }

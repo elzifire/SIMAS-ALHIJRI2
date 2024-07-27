@@ -20,8 +20,7 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label>NAMA KATEGORI</label>
-                                <input type="text" name="name" value="{{ old('name', $categoryVideo++
-                                ->name) }}" placeholder="Masukkan Nama Kategori" class="form-control @error('name') is-invalid @enderror">
+                                <input type="text" name="name" value="{{ old('name', $categoryVideo->name) }}" placeholder="Masukkan Nama Kategori" class="form-control @error('name') is-invalid @enderror">
 
                                 @error('name')
                                 <div class="invalid-feedback" style="display: block">
