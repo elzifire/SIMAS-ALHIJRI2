@@ -17,8 +17,6 @@ return new class extends Migration
     $table->string('title');
     $table->string('slug');
     $table->text('desc');
-    $table->date('date');
-    $table->string('image');
     $table->timestamps();
   });
 
@@ -28,11 +26,12 @@ return new class extends Migration
     $table->string('heading');
     $table->text('caption');
     $table->date('date');
-    $table->bigInteger('category_id')->foreign('category_id')->references('id')->on('categories_photos')->onDelete('cascade');
+    // $table->string('category_id');
+    // $table->bigInteger('category_id')->foreign('category_id')->references('id')->on('categories_photos')->onDelete('cascade');
     $table->timestamps();
   });
 }
-
+  
     /**
      * Reverse the migrations.
      */

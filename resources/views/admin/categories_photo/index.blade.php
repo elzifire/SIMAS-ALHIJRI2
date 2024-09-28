@@ -12,13 +12,13 @@
 
             @can('photos.create')
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header">   
                         <h4><i class="fas fa-image"></i> Tambah Kategori Foto</h4>
                     </div>
 
                     <div class="card-body">
 
-                        <form action="{{ route('admin.categories_photo.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.categories_photo.store') }}" method="POST">
                             @csrf
 
                             <div class="form-group">
@@ -49,17 +49,6 @@
                                 <input type="date" name="date" value="{{ old('date') }}" class="form-control @error('date') is-invalid @enderror">
 
                                 @error('date')
-                                <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                            {{-- image --}}
-                            <div class="form-group">
-                                <label>Gambar</label>
-                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
-
-                                @error('image')
                                 <div class="invalid-feedback" style="display: block">
                                     {{ $message }}
                                 </div>

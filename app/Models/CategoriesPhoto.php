@@ -17,10 +17,5 @@ class CategoriesPhoto extends Model
         return $this->hasMany(Photo::class);
     }
 
-    public function image(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => asset('/storage/photos/' . $value),
-        );
-    }
+    
 }
