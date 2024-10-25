@@ -29,6 +29,24 @@
                                 @enderror
                             </div>
 
+                            {{-- category --}}
+                            <div class="form-group">
+                                <label>KATEGORI</label>
+                                <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}" {{ old('category_id', $video->category_id) == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                @error('category_id')
+                                <div class="invalid-feedback" style="display: block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+
                             <div class="form-group">
                                 <label>DESKRIPSI</label>
                                 <input type="text" name="desc" id="text" value="{{ old('desc', $video->desc) }}" placeholder="Masukkan Judul Video" class="form-control @error('desc') is-invalid @enderror">

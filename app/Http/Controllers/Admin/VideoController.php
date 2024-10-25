@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use App\Models\CategoryVideo;
 
 class VideoController extends Controller
 {
@@ -39,7 +40,8 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('admin.video.create');
+        $categories = CategoryVideo::all();
+        return view('admin.video.create', compact('categories'));
     }
 
     /**
@@ -52,14 +54,16 @@ class VideoController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'embed' => 'required',
-            'desc' => 'required',
+            'embed' => 'required|url',
+            'desc' => 'required|string',
+            'category_id' => 'required',
         ]);
 
         $video = Video::create([
             'title' => $request->input('title'),
             'embed' => $request->input('embed'),
             'desc' => $request->input('desc'),
+            'category_id' => $request->input('category_id'),
         ]);
 
         if($video){
@@ -79,7 +83,8 @@ class VideoController extends Controller
      */
     public function edit(Video $video)
     {
-        return view('admin.video.edit', compact('video'));
+        $categories = CategoryVideo::all();
+        return view('admin.video.edit', compact('video', 'categories'));
     }
 
     /**
@@ -95,6 +100,7 @@ class VideoController extends Controller
             'title' => 'required',
             'embed' => 'required',
             'desc' => 'required',
+            'category_id' => 'required',
         ]);
 
         $video = Video::findOrFail($video->id);
@@ -102,6 +108,7 @@ class VideoController extends Controller
             'title' => $request->input('title'),
             'embed' => $request->input('embed'),
             'desc' => $request->input('desc'),
+            'category_id' => $request->input('category_id'),
         ]);
 
         if($video){

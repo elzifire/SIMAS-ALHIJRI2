@@ -50,8 +50,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="{{ route('logout') }}" style="cursor: pointer"
-                                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
+                                onclick="event.preventDefault(); confirmLogout();
+                                                    "
                                 class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
@@ -166,11 +166,11 @@
 
 
                         {{-- {{-- categories_photo --}}
-                        @can('photos.index')
+                        {{-- @can('photos.index')
                             <li class="{{ setActive('admin/category_photo') }}"><a class="nav-link"
                                     href="{{ route('admin.categories_photo.index') }}"><i class="fas fa-folder"></i>
                                     <span>Kategori Foto</span></a></li>
-                        @endcan 
+                        @endcan  --}}
                         
                         @can('photos.index')
                             <li class="{{ setActive('admin/photo') }}"><a class="nav-link"
@@ -299,6 +299,21 @@
                 buttons: false,
             });
         @endif
+
+        //confirm logout
+        function confirmLogout() {
+            swal({
+                title: "Apakah Anda Yakin?",
+                text: "Anda akan keluar dari aplikasi",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willLogout) => {
+                if (willLogout) {
+                    document.getElementById('logout-form').submit();
+                }
+            });
+        }
     </script>
 </body>
 
