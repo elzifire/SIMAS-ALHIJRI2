@@ -73,6 +73,19 @@
                             <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
                         </div>
 
+                        {{-- date --}}
+                        <div class="form-group">
+                            <label>TANGGAL</label>
+                            <input type="date" name="date" value="{{ old('date', $post->date) }}"
+                                class="form-control @error('date') is-invalid @enderror">
+
+                            @error('date')
+                            <div class="invalid-feedback" style="display: block">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
 
                         <div class="form-group">
                             <label class="font-weight-bold">TAGS</label>

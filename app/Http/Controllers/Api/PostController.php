@@ -69,7 +69,7 @@ class PostController extends Controller
      */
     public function PostHomePage()
     {
-        $posts = Post::latest()->take(6)->get();
+        $posts = Post::latest()->take(6)->with('category')->get();
         return response()->json([
             "response" => [
                 "status"    => 200,

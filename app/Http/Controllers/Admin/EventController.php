@@ -52,18 +52,25 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2000',
             'title'     => 'required',
             'content'   => 'required',
             'location'  => 'required',
             'date'      => 'required'
         ]);
 
+        //upload image
+        $image = $request->file('image');
+        $image->storeAs('public/events', $image->hashName());
+        
         $event = Event::create([
             'title'     => $request->input('title'),
             'slug'      => Str::slug($request->input('title'), '-'),
             'content'   => $request->input('content'),
             'location'  => $request->input('location'),
-            'date'      => $request->input('date')
+            'date'      => $request->input('date'),
+            'desc'      => $request->input('desc'),
+            'image'     => $image->hashName()
         ]);
 
         if($event){

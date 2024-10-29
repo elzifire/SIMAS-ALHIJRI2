@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('leaders', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('telp'. 15);
-            $table->string('image');
-            $table->timestamps();
-
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('author')->default('Admin');
+            $table->date('date')->default(now());
         });
     }
 
@@ -26,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('leaders');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('author');
+            $table->dropColumn('date');
+        });
     }
 };

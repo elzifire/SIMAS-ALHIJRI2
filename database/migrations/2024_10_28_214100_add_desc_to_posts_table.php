@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('leaders', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('telp'. 15);
-            $table->string('image');
-            $table->timestamps();
-
+        Schema::table('posts', function (Blueprint $table) {
+            $table->text('desc')->after('content')->nullable();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('leaders');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('desc');
+        });
     }
 };

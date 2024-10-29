@@ -61,18 +61,27 @@ class PostController extends Controller
             'title'         => 'required|unique:posts',
             'category_id'   => 'required',
             'content'       => 'required',
+            'date'          => 'required|date',
         ]);
 
         //upload image
         $image = $request->file('image');
         $image->storeAs('public/posts', $image->hashName());
+        // content
+        $content = $request->input('content');
+        // desc
+        $desc = substr($content, 0, strpos($content, '.') + 1);
 
+        
         $post = Post::create([
             'image'       => $image->hashName(),
             'title'       => $request->input('title'),
             'slug'        => Str::slug($request->input('title'), '-'),
             'category_id' => $request->input('category_id'),
-            'content'     => $request->input('content')  
+            'content'     => $content,
+            'date'        => $request->input('date'),
+            'author'      => auth()->user()->name,  
+            'desc'        => $desc
         ]);
 
         //assign tags
@@ -117,14 +126,23 @@ class PostController extends Controller
             'content'       => 'required',
         ]);
 
-        if ($request->file('image') == "") {
+       
+
         
+
+        if ($request->file('image') == "") {
+            $desc = substr($content, 0, strpos($content, '.') + 1);
+            // content
+            $content = $request->input('content');
             $post = Post::findOrFail($post->id);
             $post->update([
                 'title'       => $request->input('title'),
                 'slug'        => Str::slug($request->input('title'), '-'),
                 'category_id' => $request->input('category_id'),
-                'content'     => $request->input('content')  
+                'content'     => $content,
+                'date'        => $request->input('date'),
+                'author'      => auth()->user()->name,
+                'desc'        => $desc
             ]);
 
         } else {
@@ -135,6 +153,9 @@ class PostController extends Controller
             //upload new image
             $image = $request->file('image');
             $image->storeAs('public/posts', $image->hashName());
+            $desc = substr($content, 0, strpos($content, '.') + 1);
+            // content
+            $content = $request->input('content');
 
             $post = Post::findOrFail($post->id);
             $post->update([
@@ -142,7 +163,9 @@ class PostController extends Controller
                 'title'       => $request->input('title'),
                 'slug'        => Str::slug($request->input('title'), '-'),
                 'category_id' => $request->input('category_id'),
-                'content'     => $request->input('content')  
+                'content'     => $content,
+                'date'        => $request->input('date'),
+                'author'      => auth()->user()->name,  
             ]);
 
         }

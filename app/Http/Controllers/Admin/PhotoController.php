@@ -33,9 +33,8 @@ class PhotoController extends Controller
             })
             ->paginate(10);
 
-        $categories = CategoriesPhoto::all();
 
-        return view('admin.photo.index', compact('photos', 'categories'));
+        return view('admin.photo.index', compact('photos', ));
     }
 
     /**

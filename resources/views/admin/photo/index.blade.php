@@ -44,21 +44,7 @@
                                 @enderror
                             </div>
 
-                            {{-- category --}}
-                            <div class="form-group">
-                                <label>KATEGORI</label>
-                                <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
-                                    <option value="">Pilih Kategori</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
-                                    @endforeach
-                                </select>
-
-                                @error('category_id')
-                                <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                            
 
                             <div class="form-group">
                                 <label>TANGGAL</label>
@@ -106,7 +92,6 @@
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
                                 <th scope="col">JUDUL</th>
                                 <th scope="col">CAPTION</th>
-                                <th scope="col">KATEGORI</th>
                                 <th scope="col">TANGGAL</th>    
                                 <th scope="col">FOTO</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
@@ -118,7 +103,6 @@
                                     <th scope="row" style="text-align: center">{{ ++$no + ($photos->currentPage()-1) * $photos->perPage() }}</th>
                                     <td>{{ $photo->heading }}</td>
                                     <td>{!! $photo->caption !!}</td>
-                                    <td>{{ $photo->category->title }}</td>
                                     <td>{{ $photo->date }}</td>
                                     <td><img src="{{ $photo->image }}" style="width: 150px"></td>
                                     <td class="text-center">

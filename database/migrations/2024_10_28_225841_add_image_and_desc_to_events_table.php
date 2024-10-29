@@ -6,18 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    // desc itu deskripsi
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('leaders', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('telp'. 15);
-            $table->string('image');
-            $table->timestamps();
-
+        Schema::table('events', function (Blueprint $table) {
+            $table->string('image')->nullable();
+            $table->text('desc')->nullable();
         });
     }
 
@@ -26,6 +23,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('leaders');
+        Schema::table('events', function (Blueprint $table) {
+            $table->dropColumn('image');
+            $table->dropColumn('desc');
+        });
     }
 };

@@ -18,7 +18,7 @@ return new class extends Migration
     $table->id();
     $table->string('title');
     $table->string('embed');
-    $table->string('desc');
+    $table->text('desc');
     $table->unsignedBigInteger('category_id');
     $table->timestamps();
     

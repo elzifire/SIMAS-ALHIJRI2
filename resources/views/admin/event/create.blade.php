@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('admin.event.store') }}" method="POST">
+                        <form action="{{ route('admin.event.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -66,6 +66,29 @@
                                 @enderror
                             </div>
 
+                            {{-- desc --}}
+                            <div class="form-group">
+                                <label>DESKRIPSI</label>
+                                <textarea class="form-control @error('desc') is-invalid @enderror" name="desc" placeholder="Masukkan Deskripsi Agenda" rows="5">{{ old('desc') }}</textarea>
+                                @error('desc')
+                                <div class="invalid-feedback" style="display: block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            {{-- image --}}
+                            <div class="form-group">
+                                <label>GAMBAR</label>
+                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+
+                                @error('image')
+                                <div class="invalid-feedback" style="display: block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
                             <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i> SIMPAN</button>
                             <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
 
@@ -79,7 +102,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.6.2/tinymce.min.js"></script>
     <script>
         var editor_config = {
-            selector: "textarea.content",
+            selector: "textarea",
             plugins: [
                 "advlist autolink lists link image charmap print preview hr anchor pagebreak",
                 "searchreplace wordcount visualblocks visualchars code fullscreen",
