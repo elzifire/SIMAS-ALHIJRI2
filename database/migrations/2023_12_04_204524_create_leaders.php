@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('telp'. 15);
             $table->string('image');
             $table->timestamps();
-
+ 
         });
     }
 
