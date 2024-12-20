@@ -49,7 +49,7 @@
 
                             <div class="form-group">
                                 <label>DESKRIPSI</label>
-                                <input type="text" name="desc" id="text" value="{{ old('desc', $video->desc) }}" placeholder="Masukkan Judul Video" class="form-control @error('desc') is-invalid @enderror">
+                                <input type="text" name="desc" id="desc" value="{{ old('desc', $video->desc) }}" placeholder="Masukkan Judul Video" class="form-control @error('desc') is-invalid @enderror">
 
                                 @error('desc')
                                 <div class="invalid-feedback" style="display: block">
@@ -78,9 +78,11 @@
             </div>
         </section>
     </div>
+    <script src="https://cdn.tiny.cloud/1/31fk3dv7kvw3biknorel2anuvrzy0iivkk4x02kgiek0ygc1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
     <script>
         tinymce.init({
-          selector: '#text',
+          selector: '#desc',
           plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
           toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
         });

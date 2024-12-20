@@ -26,6 +26,18 @@ class EnterController extends Controller
         return view('admin.enter.index', compact('enters', 'totalBalance', 'moneyIn', 'moneyOut'));
     }
 
+    public function grapik()
+    {
+        $enters = Enter::latest()->paginate(5);
+        // Calculate total money in and out
+        $moneyIn = Enter::sum('balance');
+        $moneyOut = Out::sum('balance');
+    
+        // Calculate total balance (money in - money out)
+        $totalBalance = $moneyIn - $moneyOut;
+        return response()->json($enters);
+    }
+
     public function create()
     {
         return view('admin.enter.create');

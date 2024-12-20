@@ -116,6 +116,8 @@
               </div>
             </div>
                               
+            <canvas id="myChart" height="100px"></canvas>
+
           </div>
 
     </section>

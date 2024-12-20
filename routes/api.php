@@ -15,15 +15,16 @@ use App\Http\Controllers\Api\VisiController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+ 
 
 //modul posts 
 Route::get('/post', [App\Http\Controllers\Api\PostController::class, 'index']);
 Route::get('/post/{id?}', [App\Http\Controllers\Api\PostController::class, 'show']);
 Route::get('/homepage/post', [App\Http\Controllers\Api\PostController::class, 'PostHomePage']);
+Route::get('/post/category/{slug?}', [App\Http\Controllers\Api\PostController::class, 'PostCategory']);
 
 
 //modul events
@@ -54,6 +55,7 @@ Route::get('/homepage/video', [App\Http\Controllers\Api\VideoController::class, 
 
 //money
 Route::get('/homepage/money', [\App\Http\Controllers\Api\MoneyController::class, 'MoneyHomePage']);
+Route::get('/grapik', [\App\Http\Controllers\Api\MoneyController::class, 'grapik']);
 
 // muadzin
 Route::get('/muadzin', [App\Http\Controllers\Api\MuadzinController::class, 'index']);

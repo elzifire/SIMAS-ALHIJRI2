@@ -33,5 +33,19 @@ class MoneyController extends Controller
             ]
         ], 200);
     }
+
+    public function grapik()
+    {
+        $enters = Enter::latest();
+
+        $out = Out::latest();
+
+        $data = [
+            'enters' => $enters,
+            'out' => $out
+        ];
+
+        return response()->json($data, 200);
+    }
 }
 

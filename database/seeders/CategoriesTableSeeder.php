@@ -13,7 +13,7 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = collect(['Technology', 'Health', 'Lifestyle', 'Education', 'Entertainment']);
+        $categories = collect(['Mualaf', 'Dakwah', 'Sosial', 'Pendidikan', 'Kesehatan', 'Ekonomi', 'Lingkungan', 'Bencana Alam', 'Kemanusiaan', 'Keluarga', 'Anak', 'Remaja', 'Lansia', 'Perempuan', 'Pria', 'Difabel', 'Korban Kekerasan', 'Korban Narkoba', 'Korban HIV/AIDS', 'Korban']);
 
         $categories->each(function ($category) {
             DB::table('categories')->insert([

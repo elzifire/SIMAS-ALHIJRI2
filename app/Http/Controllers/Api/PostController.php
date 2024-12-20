@@ -78,4 +78,19 @@ class PostController extends Controller
             "data" => $posts
         ], 200);
     }
+
+    // menampilkan data post berdasarkan category dengan id 1 
+    public function PostCategory($slug)
+    {
+        $posts = Post::whereHas('category', function($query) use ($slug) {
+            $query->where('slug', $slug);
+        })->latest()->paginate(6);
+        return response()->json([
+            "response" => [
+                "status"    => 200,
+                "message"   => "List Data Posts By Category"
+            ],
+            "data" => $posts
+        ], 200);
+    }
 }
