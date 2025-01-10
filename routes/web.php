@@ -29,7 +29,7 @@ use App\Http\Controllers\Admin\VisiController;
 
 
 
-
+Route::get('/test', [\App\Http\Controllers\Api\TestController::class, 'index']);
 
 
 Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'ShowLoginForm']);
