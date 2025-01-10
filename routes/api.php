@@ -77,3 +77,6 @@ Route::get('contact', [App\Http\Controllers\Api\ContactController::class, 'index
 
 // route for service
 Route::get('service', [App\Http\Controllers\Api\ServiceController::class, 'index']);
+
+// mualaf
+Route::post('mualaf', [App\Http\Controllers\Api\MualafController::class, 'store']);

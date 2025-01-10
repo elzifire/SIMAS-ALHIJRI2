@@ -10,7 +10,7 @@ class MualafController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
+       $this->validate($request,[
             "nama_lengkap" => "required",
             "no_ktp" => "required",
             "jenis_kelamin" => "required|in:L,P",
@@ -21,12 +21,25 @@ class MualafController extends Controller
             "kebangsaan" => "required",
             "email" => "required|email",
             "no_hp" => "required",
-            "foto" => "nullable|image",
+            "foto" => "nullable|image|mimes:jpeg,png,jpg|max:2048",
             "alamat" => "required",
             "alamat_domisili" => "nullable",
         ]);
 
-        $mualaf = Mualaf::create($request->all());
+        $mualaf = Mualaf::create([
+            "nama_lengkap" => $request->nama_lengkap,
+            "no_ktp" => $request->no_ktp,
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "tempat_lahir" => $request->tempat_lahir,
+            "tanggal_lahir" => $request->tanggal_lahir,
+            "pekerjaan" => $request->pekerjaan,
+            "agama_sebelumnya" => $request->agama_sebelumnya,
+            "kebangsaan" => $request->kebangsaan,
+            "email" => $request->email,
+            "no_hp" => $request->no_hp,
+            "alamat" => $request->alamat,
+            "alamat_domisili" => $request->alamat_domisili,
+        ]);
 
         if ($request->hasFile("foto")) {
             $foto = $request->file("foto")->store("mualaf");
