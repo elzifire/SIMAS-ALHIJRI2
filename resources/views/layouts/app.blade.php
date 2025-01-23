@@ -166,11 +166,11 @@
 
 
                         {{-- {{-- categories_photo --}}
-                        {{-- @can('photos.index')
+                        @can('photos.index')
                             <li class="{{ setActive('admin/category_photo') }}"><a class="nav-link"
                                     href="{{ route('admin.categories_photo.index') }}"><i class="fas fa-folder"></i>
                                     <span>Kategori Foto</span></a></li>
-                        @endcan  --}}
+                        @endcan 
                         
                         @can('photos.index')
                             <li class="{{ setActive('admin/photo') }}"><a class="nav-link"

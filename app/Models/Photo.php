@@ -17,6 +17,8 @@ class Photo extends Model
      */
     protected $guarded = [];
 
+    protected $primaryKey = 'id';
+
     /**
      * image
      *

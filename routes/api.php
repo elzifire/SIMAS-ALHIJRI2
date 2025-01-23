@@ -80,3 +80,6 @@ Route::get('service', [App\Http\Controllers\Api\ServiceController::class, 'index
 
 // mualaf
 Route::post('mualaf', [App\Http\Controllers\Api\MualafController::class, 'store']);
+
+// categories_photo
+Route::get(('categories_photo'), [App\Http\Controllers\Api\PhotoController::class, 'index']);

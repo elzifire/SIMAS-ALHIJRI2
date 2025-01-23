@@ -10,6 +10,7 @@ class MualafController extends Controller
 {
     public function store(Request $request)
     {
+        
        $this->validate($request,[
             "nama_lengkap" => "required",
             "no_ktp" => "required",

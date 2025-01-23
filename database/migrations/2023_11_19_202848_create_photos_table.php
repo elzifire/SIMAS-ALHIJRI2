@@ -12,14 +12,20 @@ return new class extends Migration
     public function up(): void
 {
 
+  // Create categories_photos table
+  Schema::create('categories_photos', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+  });
+
   Schema::create('photos', function (Blueprint $table) {
     $table->id();
     $table->string('image');
     $table->string('heading');
     $table->text('caption');
     $table->date('date');
-    // $table->string('category_id');
-    // $table->bigInteger('category_id')->foreign('category_id')->references('id')->on('categories_photos')->onDelete('cascade');
+    $table->bigInteger('category_id')->foreign('category_id')->references('id')->on('categories_photos')->onDelete('cascade');
     $table->timestamps();
   });
 }

@@ -20,57 +20,68 @@ class CategoriesPhotoController extends Controller
     {
         $categories = CategoriesPhoto::latest()
             ->when(request()->q, function ($categories) {
-                $categories = $categories->where('title', 'like', '%' . request()->q . '%');
+                $categories = $categories->where('name', 'like', '%' . request()->q . '%');
             })
             ->paginate(10);
 
         return view('admin.categories_photo.index', compact('categories'));
     }
 
+    public function create()
+    {
+        return view('admin.categories_photo.create');
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'date' => 'required',
-            'image' => 'required|image:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required',
         ]);
-
-        $image = $request->file('image');
-        $image->storeAs('public/photos', $image->hashName());
 
         $category = CategoriesPhoto::create([
-            'title' => $request->input('title'),
-            'slug' => Str::slug($request->input('title')),
-            'desc' => $request->input('desc'),
-            'date' => $request->input('date'),
-            'image' => $image->hashName(),
+            'name' => $request->input('name'),
         ]);
 
-       if ($category) {
+        if ($category) {
             return redirect()->route('admin.categories_photo.index')->with('success', 'Category created successfully');
         } else {
-            return redirect()->route('admin.categories_photo.index')->with('error', 'Category failed to create');
-       }
-
+            return redirect()->route('admin.categories_photo.index')->with('error', 'Category failed to be created');
+        }
     }
 
-    // remove the specified resource from storage
+    public function edit(CategoriesPhoto $category)
+    {
+        return view('admin.categories_photo.edit', compact('category'));
+    }
+
+    public function update(Request $request, CategoriesPhoto $category)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $category = CategoriesPhoto::findOrFail($category->id);
+
+        $category->name = $request->input('name');
+
+        if ($category->save()) {
+            return redirect()->route('admin.categories_photo.index')->with('success', 'Category updated successfully');
+        } else {
+            return redirect()->route('admin.categories_photo.index')->with('error', 'Category failed to be updated');
+        }
+    }
 
     public function destroy($id)
     {
-        $category = CategoriesPhoto::findOrFail($id);
-        Storage::disk('local')->delete('public/photos/' . $category->image);
-        $category->delete();
+        $categories = CategoriesPhoto::findOrFail($id);
+        $categories->delete();
 
-        if ($category) {
-            return response()->json([
-                'status' => 'success',
-            ]);
-        }else {
-            return response()->json([
-                'status' => 'error',
-            ]);
+        if ($categories) {
+            return redirect()->route('admin.categories_photo.index')->with('success', 'Category deleted successfully');
+        } else {
+            return redirect()->route('admin.categories_photo.index')->with('error', 'Category failed to be deleted');
         }
-
     }
+    
+    
 }

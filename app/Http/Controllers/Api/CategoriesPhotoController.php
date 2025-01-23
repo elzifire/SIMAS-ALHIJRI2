@@ -10,7 +10,9 @@ class CategoriesPhotoController extends Controller
 {
     public function index()
     {
-        $categories = CategoriesPhoto::latest()->paginate(10);
+        // $categories = CategoriesPhoto::latest()->paginate(10);
+        // hanya category_id = 1
+        $categories = CategoriesPhoto::where('category_id', 1)->get();
         return response()->json([
             "response" => [
                 "status"    => 200,

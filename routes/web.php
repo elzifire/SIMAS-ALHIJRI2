@@ -29,7 +29,7 @@ use App\Http\Controllers\Admin\VisiController;
 
 
 
-Route::get('/test', [\App\Http\Controllers\Api\TestController::class, 'index']);
+// Route::get('/test', [\App\Http\Controllers\Api\TestController::class, 'index']);
 
 
 Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'ShowLoginForm']);
@@ -69,6 +69,9 @@ Route::prefix('admin')->group(function () {
 
         //photo
         Route::resource('/photo', \App\Http\Controllers\Admin\PhotoController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
+
+        // categories_photo
+        Route::resource('/categories_photo', \App\Http\Controllers\Admin\CategoriesPhotoController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
         
         //video
         Route::resource('/video', \App\Http\Controllers\Admin\VideoController::class, ['except' => 'show' ,'as' => 'admin']);
