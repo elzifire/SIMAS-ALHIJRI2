@@ -46,14 +46,27 @@ class PhotoController extends Controller
     // just category_id = 1
     public function PhotoCategory()
     {
-        $photos = Photo::where('category_id', 1)->get();
-        return response()->json([
-            "response" => [
-                "status"    => 200,
-                "message"   => "List Data Foto Kategori"
-            ],
-            "data" => $photos
-        ], 200);
+        // Optimized query
+        // $photos = Photo::where('category_id', 1)->latest()->get();
+        $photos = Photo::where('category_id', 1)->latest()->paginate(6);
+
+        if ($photos) {
+            return response()->json([
+                "response" => [
+                    "status"    => 200,
+                    "message"   => "List Data Foto Kategori"
+                ],
+                "data" => $photos
+            ], 200);
+        } else {
+            return response()->json([
+                "response" => [
+                    "status"    => 404,
+                    "message"   => "Data Foto Kategori Tidak Ditemukan"
+                ],
+                "data" => null
+            ], 404);
+        }
     }
 
     
