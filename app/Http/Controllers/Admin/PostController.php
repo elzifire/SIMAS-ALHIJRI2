@@ -125,15 +125,12 @@ class PostController extends Controller
             'category_id'   => 'required',
             'content'       => 'required',
         ]);
-
-       
-
         
 
         if ($request->file('image') == "") {
-            $desc = substr($content, 0, strpos($content, '.') + 1);
             // content
             $content = $request->input('content');
+            $desc = substr($content, 0, strpos($content, '.') + 1);
             $post = Post::findOrFail($post->id);
             $post->update([
                 'title'       => $request->input('title'),
