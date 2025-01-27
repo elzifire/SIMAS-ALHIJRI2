@@ -71,7 +71,6 @@ class PostController extends Controller
         $content = $request->input('content');
         // desc
         $desc = substr($content, 0, strpos($content, '.') + 1);
-
         
         $post = Post::create([
             'image'       => $image->hashName(),
@@ -150,6 +149,7 @@ class PostController extends Controller
             //upload new image
             $image = $request->file('image');
             $image->storeAs('public/posts', $image->hashName());
+            $content = $request->input('content');
             $desc = substr($content, 0, strpos($content, '.') + 1);
             // content
             $content = $request->input('content');
