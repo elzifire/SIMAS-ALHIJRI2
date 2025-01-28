@@ -90,7 +90,23 @@
 
                             <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i> SIMPAN</button>
                             <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
-
+                            {{-- buatkan modal untuk memilih baca juga artikel terkait --}}
+                            {{-- <div id="relatedPostsModal" class="modal" style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -20%); background: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                                <div class="modal-content">
+                                    <h2b>Pilih Artikel Terkait</h2b>
+                                    <div class="related-posts">
+                                        @foreach ($Posts as $post)
+                                        <li>
+                                            <button class="btn-insert-related" data-link="{{ route('post.show', $post->id) }}" data-title="{{ $post->title }}">
+                                                {{ $post->title }}
+                                            </button>
+                                        </li>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <button onclick="document.getElementById('relatedPostsModal').style.display='none'">Tutup</button>
+                            </div>
+                             --}}
                         </form>
                     </div>
                 </div>
@@ -104,11 +120,36 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.6.0/tinymce.min.js" integrity="sha512-/4EpSbZW47rO/cUIb0AMRs/xWwE8pyOLf8eiDWQ6sQash5RP1Cl8Zi2aqa4QEufjeqnzTK8CLZWX7J5ZjLcc1Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-  tinymce.init({
+    tinymce.init({
     selector: 'textarea',
-    plugins: 'anchor au`tolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat | bacaJugaButton',
     icons: 'material',
-  });
+
+    // Tambahkan tombol custom
+//     setup: function (editor) {
+//         editor.ui.registry.addButton('bacaJugaButton', {
+//             text: 'Baca Juga',
+//             onAction: function () {
+//                 // Buka modal untuk memilih artikel
+//                 const modal = document.getElementById('relatedPostsModal');
+//                 modal.style.display = 'block';
+//             }
+//         });
+//     }
+    
+//   });
+//   document.querySelectorAll('.btn-insert-related').forEach(button => {
+//         button.addEventListener('click', function () {
+//             const link = this.getAttribute('data-link');
+//             const title = this.getAttribute('data-title');
+
+//             // Sisipkan ke dalam konten TinyMCE
+//             tinymce.activeEditor.execCommand('mceInsertContent', false, `<p><strong>Baca Juga:</strong> <a href="${link}" target="_blank">${title}</a></p>`);
+
+//             // Tutup modal
+//             document.getElementById('relatedPostsModal').style.display = 'none';
+//         });
+//     });
 </script>
 @stop

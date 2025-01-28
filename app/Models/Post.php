@@ -59,7 +59,22 @@ class Post extends Model
     protected function createdAt(): Attribute
     {   
         return Attribute::make(
-            get: fn ($value) => Carbon::parse($value)->format('d-M-Y'),
+            // get: fn ($value) => Carbon::parse($value)->format('d-M-Y'),
+            get: fn ($value) => Carbon::parse($value)->diffForHumans(),
         );
     }
+
+    /**
+     * getdateAttribute
+     * 
+     * @param  mixed $date
+     * @return void
+    */
+    protected function date(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Carbon::parse($value)->diffForHumans(),
+        );
+    }
+
 }

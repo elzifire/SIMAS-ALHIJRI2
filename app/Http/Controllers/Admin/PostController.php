@@ -45,8 +45,15 @@ class PostController extends Controller
     {
         $tags = Tag::latest()->get();
         $categories = Category::latest()->get();
+        // $Posts = Post::latest()->take(5)->get();
         return view('admin.post.create', compact('tags', 'categories'));
     }
+
+    public function show($id)
+{
+    $post = Post::findOrFail($id);
+    return view('post.show', compact('post'));
+}
 
     /**
      * Store a newly created resource in storage.
