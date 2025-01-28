@@ -24,6 +24,7 @@ class PostsTableSeeder extends Seeder
                 'slug' => Str::slug($title),
                 'category_id' => $faker->randomElement($categoryIds),
                 'content' => $faker->paragraphs(3, true),
+                'date' => $faker->dateTimeBetween('-1 year', 'now'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

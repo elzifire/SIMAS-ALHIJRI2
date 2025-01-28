@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(6);
+        $posts = Post::latest()->orderBy('date', 'desc')->paginate(20);
         return response()->json([
             "response" => [
                 "status"    => 200,
