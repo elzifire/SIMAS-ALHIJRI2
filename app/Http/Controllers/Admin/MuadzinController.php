@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Muadzin;
+use illuminate\Support\Facades\Storage;
 
 class MuadzinController extends Controller
 {
@@ -88,17 +89,16 @@ class MuadzinController extends Controller
 public function destroy($id)
     {
         $muadzin = Muadzin::findOrFail($id);
-        $muadzin->delete();
+        $deleted = Storage::disk('local')->delete('public/muadzin/' . $muadzin->image);
+        if (!$deleted) {
+            return redirect()->route('admin.muadzin.index')->with(['error' => 'Image Deletion Failed!']);
+        }
+        $deleteResult = $muadzin->delete();
 
-
-        if($muadzin){
-            return response()->json([
-                'status' => 'success'
-            ]);
+        if($deleteResult){
+            return redirect()->route('admin.muadzin.index')->with(['success' => 'Data Berhasil Dihapus!']);
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            return redirect()->route('admin.muadzin.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
 

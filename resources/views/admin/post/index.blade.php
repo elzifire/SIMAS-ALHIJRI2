@@ -39,6 +39,7 @@
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
                                 <th scope="col">JUDUL BERITA</th>
                                 <th scope="col">KATEGORI</th>
+                                <th scope="col">DIBUAT</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
                             </thead>
@@ -48,6 +49,7 @@
                                     <th scope="row" style="text-align: center">{{ ++$no + ($posts->currentPage()-1) * $posts->perPage() }}</th>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->category->name }}</td>
+                                    <td>{{ $post->date }}</td>
                                     <td class="text-center">
                                         @can('posts.edit')
                                             <a href="{{ route('admin.post.edit', $post->id) }}" class="btn btn-sm btn-primary">
@@ -56,9 +58,18 @@
                                         @endcan
 
                                         @can('posts.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $post->id }}">
+                                            {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $post->id }}">
+                                                @csrf
                                                 <i class="fa fa-trash"></i>
-                                            </button>
+                                            </button> --}}
+                                            {{-- button delete --}}
+                                            <form action="{{ route('admin.post.destroy', $post->id) }}" method="POST" style="display: inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
                                         @endcan
                                     </td>
                                 </tr>
@@ -76,7 +87,7 @@
     </section>
 </div>
 
-<script>
+{{-- <script>
     //ajax delete
     function Delete(id)
         {
@@ -98,7 +109,7 @@
 
                     //ajax delete
                     jQuery.ajax({
-                        url: "/admin/post/"+id,
+                        url: "admin/post/"+id,
                         data:     {
                             "id": id,
                             "_token": token
@@ -138,5 +149,5 @@
                 }
             })
         }
-</script>
+</script> --}}
 @stop

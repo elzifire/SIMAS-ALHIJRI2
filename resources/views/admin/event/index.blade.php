@@ -58,9 +58,16 @@
                                         @endcan
 
                                         @can('events.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $event->id }}">
+                                            {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $event->id }}">
                                                 <i class="fa fa-trash"></i>
-                                            </button>
+                                            </button> --}}
+                                            <form action="{{ route('admin.event.destroy', $event->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
                                         @endcan
                                     </td>
                                 </tr>

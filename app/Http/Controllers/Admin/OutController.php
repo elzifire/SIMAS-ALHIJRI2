@@ -81,7 +81,7 @@ class OutController extends Controller
             'date' => $request->input('date'),
         ]);
 
-        if ($out) {
+        if ($out !== null) {
             return redirect()->route('admin.out.index')->with(['success' => 'Data Berhasil']);
         }else {
             return redirect()->route('admin.out.index')->with(['error' => 'gagal']);
@@ -94,14 +94,10 @@ class OutController extends Controller
         $out = Out::findOrFail($id);
         $out->delete();
 
-        if($out){
-            return response()->json([
-                'status' => 'success'
-            ]);
-        }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+        if ($out !== null) {
+            return redirect()->route('admin.out.index')->with(['success' => 'Data Berhasil']);
+        }else {
+            return redirect()->route('admin.out.index')->with(['error' => 'gagal']);
         }
     }
 

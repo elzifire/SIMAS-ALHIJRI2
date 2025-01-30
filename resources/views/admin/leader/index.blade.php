@@ -58,9 +58,16 @@
                                         @endcan
 
                                         @can('leaders.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $leader->id }}">
+                                            {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $leader->id }}">
                                                 <i class="fa fa-trash"></i>
-                                            </button>
+                                            </button> --}}
+                                            <form action="{{ route('admin.leader.destroy', $leader->id) }}" method="post" class="d-inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin ?')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
                                         @endcan
                                     </td>
                                 </tr>
@@ -78,7 +85,7 @@
     </section>
 </div>
 
-<script>
+{{-- <script>
     //ajax delete
     function Delete(id)
         {
@@ -139,5 +146,5 @@
                 }
             })
         }
-</script>
+</script> --}}
 @stop

@@ -51,10 +51,19 @@
                                                     </a>
                                                 @endcan
                                                 @can('enters.delete')
-                                                    <button onClick="Delete(this.id)" class="btn btn-sm btn-danger"
+                                                    {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger"
                                                         id="{{ $enter->id }}">
                                                         <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    </button> --}}
+                                                    <form action="{{ route('admin.enter.destroy', $enter->id) }}" method="post"
+                                                        class="d-inline">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Apakah Anda Yakin ?')">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 @endcan
                                             </td>
                                         </tr>
@@ -88,7 +97,7 @@
         </section>
     </div>
 
-    <script>
+    {{-- <script>
         //ajax delete
         function Delete(id) {
             var id = id;
@@ -148,5 +157,5 @@
                 }
             })
         }
-    </script>
+    </script> --}}
 @stop

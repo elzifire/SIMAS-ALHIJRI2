@@ -54,9 +54,16 @@
                                         @endcan
                                         
                                         @can('categories.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $category->id }}">
+                                            {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $category->id }}">
                                                 <i class="fa fa-trash"></i>
-                                            </button>  
+                                            </button>   --}}
+                                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
                                         @endcan
                                     </td>
                                 </tr>
@@ -74,7 +81,7 @@
     </section>
 </div>
 
-<script>
+{{-- <script>
     //ajax delete
     function Delete(id)
         {
@@ -135,5 +142,5 @@
                 }
             })
         }
-</script>
+</script> --}}
 @stop

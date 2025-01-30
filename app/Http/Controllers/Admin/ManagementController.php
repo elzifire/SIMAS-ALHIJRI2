@@ -59,19 +59,16 @@ class ManagementController extends Controller
     public function destroy($id)
     {
         $management = Management::findOrFail($id);
-        $image = Storage::disk('local')->delete('public/management/' . basename($management->image));
-        $management->delete();
+        $deleted = Storage::disk('local')->delete('public/management/' . $management->image);
+        if (!$deleted) {
+            return redirect()->route('admin.management.index')->with(['error' => 'Image Deletion Failed!']);
+        }
+        $deleteResult = $management->delete();
 
-        if ($management) {
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Data Berhasil Dihapus!'
-            ]);
+        if($deleteResult){
+            return redirect()->route('admin.management.index')->with(['success' => 'Data Berhasil Dihapus!']);
         }else{
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Data Gagal Dihapus!'
-            ]);
+            return redirect()->route('admin.management.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
 

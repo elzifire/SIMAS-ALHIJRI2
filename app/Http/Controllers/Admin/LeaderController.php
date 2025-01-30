@@ -93,20 +93,36 @@ class LeaderController extends Controller
     }
     
 
+    // public function destroy($id)
+    // {
+    //     $leader = Leader::findOrFail($id);
+    //     $leader->delete();
+
+
+    //     if($leader){
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error'
+    //         ]);
+    //     }
+    // }
+
     public function destroy($id)
     {
         $leader = Leader::findOrFail($id);
-        $leader->delete();
+        $deleted = Storage::disk('local')->delete('public/leader/' . $leader->image);
+        if (!$deleted) {
+            return redirect()->route('admin.leader.index')->with(['error' => 'Image Deletion Failed!']);
+        }
+        $deleteResult = $leader->delete();
 
-
-        if($leader){
-            return response()->json([
-                'status' => 'success'
-            ]);
+        if($deleteResult){
+            return redirect()->route('admin.leader.index')->with(['success' => 'Data Berhasil Dihapus!']);
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            return redirect()->route('admin.leader.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
 

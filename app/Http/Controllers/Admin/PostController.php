@@ -29,7 +29,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->when(request()->q, function($posts) {
+        $posts = Post::latest()->orderBy('date', 'desc')->when(request()->q, function($posts) {
             $posts = $posts->where('title', 'like', '%'. request()->q . '%');
         })->paginate(10);
 
@@ -192,20 +192,36 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($id)
+    // {
+    //     $post = Post::findOrFail($id);
+    //     $image = Storage::disk('local')->delete('public/posts/'.basename($post->image));
+    //     $post->delete();
+
+    //     if($post){
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error'
+    //         ]);
+    //     }
+    // }
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        $image = Storage::disk('local')->delete('public/posts/'.basename($post->image));
+        //remove old image
+        Storage::disk('local')->delete('public/posts/'.$post->image);
+        $post->tags()->detach();
         $post->delete();
 
         if($post){
-            return response()->json([
-                'status' => 'success'
-            ]);
+            //redirect dengan pesan sukses
+            return redirect()->route('admin.post.index')->with(['success' => 'Data Berhasil Dihapus!']);
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            //redirect dengan pesan error
+            return redirect()->route('admin.post.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
 }

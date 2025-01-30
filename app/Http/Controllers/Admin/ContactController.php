@@ -27,20 +27,34 @@ class ContactController extends Controller
             ->with('success', 'Contact created successfully.');
     }
 
-   public function destroy($id)
-   {
+//    public function destroy($id)
+//    {
+//         $contact = Contact::findOrFail($id);
+//         $contact->delete();
+
+//         if ($contact) {
+//             return response()->json([
+//                 'status' => 'success',
+//             ]);
+//         }else{
+//             return response()->json([
+//                'status' => 'error',
+//             ]);
+//         }
+//    }
+
+    public function destroy($id)
+    {
         $contact = Contact::findOrFail($id);
         $contact->delete();
 
         if ($contact) {
-            return response()->json([
-                'status' => 'success',
-            ]);
-        }else{
-            return response()->json([
-               'status' => 'error',
-            ]);
+            return redirect()->route('admin.contact.index')
+                ->with('success', 'Contact deleted successfully.');
+        } else {
+            return redirect()->route('admin.contact.index')
+                ->with('error', 'Contact failed to delete.');
         }
-   }
+    }
 
 }

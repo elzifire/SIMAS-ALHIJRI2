@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Event;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -133,19 +134,33 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($id)
+    // {
+    //     $event = Event::findOrFail($id);
+    //     $event->delete();
+
+    //     if($event){
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error'
+    //         ]);
+    //     }
+    // }
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
+        $image = Storage::disk('local')->delete('public/events/'.basename($event->image));
         $event->delete();
 
         if($event){
-            return response()->json([
-                'status' => 'success'
-            ]);
+            //redirect dengan pesan sukses
+            return redirect()->route('admin.event.index')->with(['success' => 'Data Berhasil Dihapus!']);
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            //redirect dengan pesan error
+            return redirect()->route('admin.event.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
 }

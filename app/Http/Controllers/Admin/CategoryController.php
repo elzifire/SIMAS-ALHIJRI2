@@ -114,19 +114,32 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($id)
+    // {
+    //     $category = Category::findOrFail($id);
+    //     $category->delete();
+
+    //     if($category){
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error'
+    //         ]);
+    //     }
+    // }
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
 
         if($category){
-            return response()->json([
-                'status' => 'success'
-            ]);
+            //redirect dengan pesan sukses
+            return redirect()->route('admin.category.index')->with(['success' => 'Data Berhasil Dihapus!']);
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            //redirect dengan pesan error
+            return redirect()->route('admin.category.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
 }

@@ -94,19 +94,32 @@ class EnterController extends Controller
         }
 
     }
+    // public function destroy($id)
+    // {
+    //     $enter = Enter::findOrFail($id);
+    //     $enter->delete();
+
+    //     if($enter){
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error'
+    //         ]);
+    //     }
+    // }
+
     public function destroy($id)
     {
         $enter = Enter::findOrFail($id);
         $enter->delete();
 
         if($enter){
-            return response()->json([
-                'status' => 'success'
-            ]);
+            return redirect()->route('admin.enter.index')->with(['success' => 'Data Berhasil']);
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            return redirect()->route('admin.enter.index')->with(['error' => 'gagal']);
         }
     }
+
 }
