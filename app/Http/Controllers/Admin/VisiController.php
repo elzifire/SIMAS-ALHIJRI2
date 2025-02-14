@@ -36,19 +36,31 @@ class VisiController extends Controller
         return redirect()->route('admin.visi.index')->with('success', 'Data berhasil ditambahkan');
     }
 
+    // public function destroy($id)
+    // {
+    //     $event = Visi::findOrFail($id);
+    //     $event->delete();
+
+    //     if($event){
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error'
+    //         ]);
+    //     }
+    // }
     public function destroy($id)
     {
-        $event = Visi::findOrFail($id);
-        $event->delete();
+        $visi = Visi::findorFail($id);
+        $visi->delete();
 
-        if($event){
-            return response()->json([
-                'status' => 'success'
-            ]);
+        if ($visi) {
+            return redirect()->route('admin.visi.index')->with('success', 'Data berhasil dihapus');
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            return redirect()->route('admin.visi.index')->with('error', 'Data tidak ditemukan');
         }
+
     }
 }

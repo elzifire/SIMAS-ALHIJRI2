@@ -120,21 +120,17 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+
+    public function destroy($id) {
         $role = Role::findOrFail($id);
         $permissions = $role->permissions;
         $role->revokePermissionTo($permissions);
         $role->delete();
 
-        if($role){
-            return response()->json([
-                'status' => 'success'
-            ]);
-        }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+        if ($role) {
+            return redirect()->route('admin.role.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        } else {
+            return redirect()->route('admin.role.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
 }

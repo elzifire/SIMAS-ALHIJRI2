@@ -70,20 +70,34 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($id)
+    // {
+    //     $slider = Slider::findOrFail($id);
+    //     $image = Storage::disk('local')->delete('public/sliders/'.basename($slider->image));
+    //     $slider->delete();
+
+    //     if($slider){
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error'
+    //         ]);
+    //     }
+    // }
+
     public function destroy($id)
     {
-        $slider = Slider::findOrFail($id);
+        $slider = Slider::findorFail($id);
         $image = Storage::disk('local')->delete('public/sliders/'.basename($slider->image));
         $slider->delete();
 
-        if($slider){
-            return response()->json([
-                'status' => 'success'
-            ]);
+        if ($slider) {
+            return redirect()->route('admin.slider.index')->with('success', 'Slider deleted successfully');
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            return redirect()->route('admin.slider.index')->with('error', 'Slider not found');
         }
+
     }
 }

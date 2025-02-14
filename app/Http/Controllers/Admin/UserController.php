@@ -135,20 +135,31 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     $user->delete();
+
+
+    //     if($user){
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error'
+    //         ]);
+    //     }
+    // }
     public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
 
-
         if($user){
-            return response()->json([
-                'status' => 'success'
-            ]);
+            return redirect()->route('admin.user.index')->with(['success' => 'Data Berhasil Dihapus!']);
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            return redirect()->route('admin.user.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
 }

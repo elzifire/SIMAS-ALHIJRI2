@@ -76,9 +76,17 @@
                                     <td class="text-center"><a href="{{ $slider->link }}">{{ $slider->link }}</a></td>
                                     <td class="text-center">
                                         @can('sliders.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $slider->id }}">
+                                            {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $slider->id }}">
                                                 <i class="fa fa-trash"></i>
-                                            </button>
+                                            </button> --}}
+                                            {{-- form --}}
+                                            <form action="{{ route('admin.slider.destroy', $slider->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
                                         @endcan
                                     </td>
                                 </tr>

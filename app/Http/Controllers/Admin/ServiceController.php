@@ -37,7 +37,12 @@ class ServiceController extends Controller
         $service = Service::findorFail($id);
         $service->delete();
 
-        return redirect()->route('admin.service.index')->with('success', 'Service deleted successfully');
+        // return redirect()->route('admin.service.index')->with('success', 'Service deleted successfully');
+        if ($service) {
+            return redirect()->route('admin.service.index')->with('success', 'Service deleted successfully');
+        }else{
+            return redirect()->route('admin.service.index')->with('error', 'Service not found');
+        }
 
     }
 

@@ -126,19 +126,30 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($id)
+    // {
+    //     $video = Video::findOrFail($id);
+    //     $video->delete();
+
+    //     if($video){
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error'
+    //         ]);
+    //     }
+    // }
     public function destroy($id)
     {
         $video = Video::findOrFail($id);
         $video->delete();
 
         if($video){
-            return response()->json([
-                'status' => 'success'
-            ]);
+            return redirect()->route('admin.video.index')->with(['success' => 'Data Berhasil Dihapus!']);
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            return redirect()->route('admin.video.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
 }

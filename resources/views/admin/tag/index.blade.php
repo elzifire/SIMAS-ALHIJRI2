@@ -54,9 +54,17 @@
                                         @endcan
                                         
                                         @can('tags.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $tag->id }}">
+                                            {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $tag->id }}">
                                                 <i class="fa fa-trash"></i>
-                                            </button>
+                                            </button> --}}
+                                            {{-- form --}}
+                                            <form action="{{ route('admin.tag.destroy', $tag->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
                                         @endcan
                                     </td>
                                 </tr>
@@ -73,7 +81,7 @@
 
     </section>
 </div>
-
+{{-- 
 <script>
     //ajax delete
     function Delete(id)
@@ -135,5 +143,5 @@
                 }
             })
         }
-</script>
+</script> --}}
 @stop

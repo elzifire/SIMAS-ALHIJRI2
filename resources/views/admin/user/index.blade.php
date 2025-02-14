@@ -62,9 +62,17 @@
                                         @endcan
                                         
                                         @can('users.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $user->id }}">
+                                            {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $user->id }}">
                                                 <i class="fa fa-trash"></i>
-                                            </button>
+                                            </button> --}}
+                                            {{-- form --}}
+                                            <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
                                         @endcan
                                     </td>
                                 </tr>
@@ -82,7 +90,7 @@
     </section>
 </div>
 
-<script>
+{{-- <script>
     //ajax delete
     function Delete(id)
         {
@@ -143,5 +151,5 @@
                 }
             })
         }
-</script>
+</script> --}}
 @stop

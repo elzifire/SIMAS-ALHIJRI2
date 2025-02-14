@@ -46,9 +46,17 @@
                                     @endcan
 
                                     @can('managements.delete')
-                                        <button onClick="Delete(this.id)" id="{{ $v->id }}"  class="btn btn-sm btn-danger" >
+                                        {{-- <button onClick="Delete(this.id)" id="{{ $v->id }}"  class="btn btn-sm btn-danger" >
                                             <i class="fa fa-trash"></i>
-                                        </button>
+                                        </button> --}}
+                                        {{-- form --}}
+                                        <form action="{{ route('admin.visi.destroy', $v->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
                                     @endcan
                                 </td>
                             </tr>
@@ -62,7 +70,7 @@
         </section>
     </div>
 
-<script>
+{{-- <script>
     //ajax delete
     function Delete(id)
         {
@@ -123,5 +131,5 @@
                 }
             })
         }
-</script>
+</script> --}}
 @stop

@@ -114,19 +114,30 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($id)
+    // {
+    //     $tag = Tag::findOrFail($id);
+    //     $tag->delete();
+
+    //     if($tag){
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'status' => 'error'
+    //         ]);
+    //     }
+    // }
     public function destroy($id)
     {
         $tag = Tag::findOrFail($id);
         $tag->delete();
 
         if($tag){
-            return response()->json([
-                'status' => 'success'
-            ]);
+            return redirect()->route('admin.tag.index')->with(['success' => 'Data Berhasil Dihapus!']);
         }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
+            return redirect()->route('admin.tag.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
 }
