@@ -19,9 +19,9 @@
                     <form action="{{ route('admin.photo.index') }}" method="GET">
                         <div class="form-group mb-3">
                             <div class="input-group">
-                                @can('category_photos.create')
+                                @can('photos.create')
                                     <div class="input-group-prepend">
-                                        <a href="{{ route('admin.category_photo.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
+                                        <a href="{{ route("admin.category_photo.create") }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
                                     </div>
                                 @endcan
                                 <input type="text" class="form-control" name="q"
@@ -40,7 +40,7 @@
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
                                 <th scope="col">KATEGORI FOTO</th>
-                                <th scope="col" style="width: 15%;text-align: center">AKSI</th>
+                                <th scope="col" style="width: 15%;text-align: center;">AKSI</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,17 +49,14 @@
                                     <th scope="row" style="text-align: center">{{ ++$no + ($categories->currentPage()-1) * $categories->perPage() }}</th>
                                     <td>{{ $photo->name }}</td>
                                     <td class="text-center">
-                                        @can('category_photos.edit')
+                                        {{-- @can('photos.edit')
                                             <a href="{{ route('admin.category_photo.edit', $photo->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                        @endcan
+                                        @endcan --}}
                                         
-                                        @can('category_photos.delete')
-                                            {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $photo->id }}">
-                                                <i class="fa fa-trash"></i>
-                                            </button> --}}
-                                            <form action="{{ route('admin.category_photo.destroy', $photo->id) }}" method="POST">
+                                        @can('photos.delete')
+                                            <form action="{{ route('admin.category_photo.destroy', $photo->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this category photo?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">

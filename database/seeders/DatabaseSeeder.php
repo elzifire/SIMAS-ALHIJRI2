@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Photo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +22,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(TagsTableSeeder::class);
         // $this->call(PostsTableSeeder::class);
         // $this->call(PostTagTableSeeder::class);
+        // $this->call(CategoriesPhotoSeeder::class);
         // $this->call(PhotosSeeder::class);
     }
 }

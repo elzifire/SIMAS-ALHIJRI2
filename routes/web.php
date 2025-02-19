@@ -72,7 +72,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/photo', \App\Http\Controllers\Admin\PhotoController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
 
         // categories_photo
-        Route::resource('/categories_photo', \App\Http\Controllers\Admin\CategoriesPhotoController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
+        Route::resource('/category_photo', \App\Http\Controllers\Admin\CategoriesPhotoController::class, ['except' => 'show' ,'as' => 'admin']);
         
         //video
         Route::resource('/video', \App\Http\Controllers\Admin\VideoController::class, ['except' => 'show' ,'as' => 'admin']);

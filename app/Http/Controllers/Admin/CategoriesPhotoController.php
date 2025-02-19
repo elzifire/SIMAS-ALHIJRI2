@@ -24,12 +24,12 @@ class CategoriesPhotoController extends Controller
             })
             ->paginate(10);
 
-        return view('admin.categories_photo.index', compact('categories'));
+        return view('admin.category_photo.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('admin.categories_photo.create');
+        return view('admin.category_photo.create');
     }
 
     public function store(Request $request)
@@ -39,19 +39,20 @@ class CategoriesPhotoController extends Controller
         ]);
 
         $category = CategoriesPhoto::create([
-            'name' => $request->input('name'),
+            // 'name' => $request->input('name'),
+            'name' => strtoupper($request->input('name')),
         ]);
 
         if ($category) {
-            return redirect()->route('admin.categories_photo.index')->with('success', 'Category created successfully');
+            return redirect()->route('admin.category_photo.index')->with('success', 'Category created successfully');
         } else {
-            return redirect()->route('admin.categories_photo.index')->with('error', 'Category failed to be created');
+            return redirect()->route('admin.category_photo.index')->with('error', 'Category failed to be created');
         }
     }
 
     public function edit(CategoriesPhoto $category)
     {
-        return view('admin.categories_photo.edit', compact('category'));
+        return view('admin.category_photo.edit', compact('category'));
     }
 
     public function update(Request $request, CategoriesPhoto $category)
@@ -65,9 +66,9 @@ class CategoriesPhotoController extends Controller
         $category->name = $request->input('name');
 
         if ($category->save()) {
-            return redirect()->route('admin.categories_photo.index')->with('success', 'Category updated successfully');
+            return redirect()->route('admin.category_photo.index')->with('success', 'Category updated successfully');
         } else {
-            return redirect()->route('admin.categories_photo.index')->with('error', 'Category failed to be updated');
+            return redirect()->route('admin.category_photo.index')->with('error', 'Category failed to be updated');
         }
     }
 
@@ -77,11 +78,12 @@ class CategoriesPhotoController extends Controller
         $categories->delete();
 
         if ($categories) {
-            return redirect()->route('admin.categories_photo.index')->with('success', 'Category deleted successfully');
+            return redirect()->route('admin.category_photo.index')->with('success', 'Category deleted successfully');
         } else {
-            return redirect()->route('admin.categories_photo.index')->with('error', 'Category failed to be deleted');
+            return redirect()->route('admin.category_photo.index')->with('error', 'Category failed to be deleted');
         }
     }
+    
     
     
 }

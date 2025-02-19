@@ -13,11 +13,11 @@ class PhotosSeeder extends Seeder
     public function run(): void
     {
         // Insert categories into categories_photos table
-        DB::table('categories_photos')->insert([
-            ['name' => 'Mualaf', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Zakat', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Donasi', 'created_at' => now(), 'updated_at' => now()],
-        ]);
+        // DB::table('categories_photos')->insert([
+        //     ['name' => 'Mualaf', 'created_at' => now(), 'updated_at' => now()],
+        //     ['name' => 'Zakat', 'created_at' => now(), 'updated_at' => now()],
+        //     ['name' => 'Donasi', 'created_at' => now(), 'updated_at' => now()],
+        // ]);
 
         // Insert photos into photos table
         // DB::table('photos')->insert([

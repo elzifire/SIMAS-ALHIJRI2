@@ -32,9 +32,11 @@ class PhotoController extends Controller
                 $photos = $photos->where('title', 'like', '%' . request()->q . '%');
             })
             ->paginate(10);
+        
+        $categories = CategoriesPhoto::all()->sortBy('name');
 
 
-        return view('admin.photo.index', compact('photos', ));
+        return view('admin.photo.index', compact('photos', 'categories'));
     }
 
     /**
@@ -49,7 +51,7 @@ class PhotoController extends Controller
             'heading' => 'required',
             'date' => 'required',
             'caption' => 'required',
-            'image' => 'required|image',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             
         ]);
 

@@ -21,10 +21,18 @@ class ContactController extends Controller
             'phone' => 'required',
         ]);
 
-        Contact::create($request->all());
+        $contact = Contact::create([
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
+        ]);
 
-        return redirect()->route('admin.contact.index')
-            ->with('success', 'Contact created successfully.');
+        if ($contact) {
+            return redirect()->route('admin.contact.index')
+                ->with('success', 'Contact created successfully');
+        } else {
+            return redirect()->route('admin.contact.index')
+                ->with('error', 'Contact failed to be created');
+        }
     }
 
 //    public function destroy($id)

@@ -34,6 +34,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label>KATEGORI FOTO</label>
+                                <select name="category_photo_id" class="form-control @error('category_photo_id') is-invalid @enderror">
+                                    <option value="">Pilih Kategori Foto</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group mt-2">
                                 <label>CAPTION</label>
                                 <textarea name="caption" value="{{ old('caption') }}" placeholder="Masukkan isi Foto" class="form-control @error('caption') is-invalid @enderror">
                                 </textarea>
