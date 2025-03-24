@@ -117,39 +117,13 @@
 
   
 <script src="https://cdn.tiny.cloud/1/31fk3dv7kvw3biknorel2anuvrzy0iivkk4x02kgiek0ygc1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.6.0/tinymce.min.js" integrity="sha512-/4EpSbZW47rO/cUIb0AMRs/xWwE8pyOLf8eiDWQ6sQash5RP1Cl8Zi2aqa4QEufjeqnzTK8CLZWX7J5ZjLcc1Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 
-<script>
+    <script>
     tinymce.init({
     selector: 'textarea',
     plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat | bacaJugaButton',
-    icons: 'material',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+  });
+    </script>
 
-    // Tambahkan tombol custom
-//     setup: function (editor) {
-//         editor.ui.registry.addButton('bacaJugaButton', {
-//             text: 'Baca Juga',
-//             onAction: function () {
-//                 // Buka modal untuk memilih artikel
-//                 const modal = document.getElementById('relatedPostsModal');
-//                 modal.style.display = 'block';
-//             }
-//         });
-//     }
-    
-//   });
-//   document.querySelectorAll('.btn-insert-related').forEach(button => {
-//         button.addEventListener('click', function () {
-//             const link = this.getAttribute('data-link');
-//             const title = this.getAttribute('data-title');
-
-//             // Sisipkan ke dalam konten TinyMCE
-//             tinymce.activeEditor.execCommand('mceInsertContent', false, `<p><strong>Baca Juga:</strong> <a href="${link}" target="_blank">${title}</a></p>`);
-
-//             // Tutup modal
-//             document.getElementById('relatedPostsModal').style.display = 'none';
-//         });
-//     });
-</script>
 @stop
