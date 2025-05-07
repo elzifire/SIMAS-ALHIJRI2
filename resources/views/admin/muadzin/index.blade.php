@@ -49,7 +49,8 @@
                                     <th scope="row" style="text-align: center">{{ ++$no + ($muadzins->currentPage()-1) * $muadzins->perPage() }}</th>
                                     <td>{{ $muadzin->name }}</td>
                                     <td>{{ $muadzin->telp }}</td>
-                                    <td><img src="{{ $muadzin->image }}" alt="" style="width: 125px"></td>       
+                                    <td><img src="{{ Storage::disk('mualaf')->url($mualaf->photo) }}" width="150" class="img-thumbnail">
+                                        </td>       
                                     <td class="text-center">
                                         @can('muadzins.edit')
                                             <a href="{{ route('admin.muadzin.edit', $muadzin->id) }}" class="btn btn-sm btn-primary">

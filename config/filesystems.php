@@ -44,6 +44,15 @@ return [
             'throw' => false,
         ],
 
+       'mualaf' => [
+            'driver' => 'local',
+            'root' => base_path('../mualaf/public'),
+            'url' => env('APP_URL_MUALAF') . '/storage/mualaf', 
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
