@@ -64,7 +64,7 @@ class PhotoController extends Controller
             'caption' => $request->input('caption'),
             'date' => $request->input('date'),
             'image' => $image->hashName(),
-
+            'category_id' => $request->input('category_id'),
         ]);
 
         if ($photo) {
