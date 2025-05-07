@@ -160,6 +160,14 @@
                             </ul>
                         </li>
 
+                        @can('mualafs.index')
+                           <li class="menu-header">Mualaf</li> 
+                            <li class="{{ setActive('admin/mualaf') }}"><a class="nav-link"
+                                    href="{{ route('admin.mualaf.index') }}"><i class="fas fa-users"></i>
+                                    <span>Mualaf</span></a></li>
+                                    
+                        @endcan
+
                         @if (auth()->user()->can('photos.index') || auth()->user()->can('videos.index'))
                             <li class="menu-header">GALERI</li>
                         @endif

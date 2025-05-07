@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(PostTagTableSeeder::class);
         // $this->call(CategoriesPhotoSeeder::class);
         // $this->call(PhotosSeeder::class);
+        // $this->call(PendaftaranSeeder::class);
     }
 }

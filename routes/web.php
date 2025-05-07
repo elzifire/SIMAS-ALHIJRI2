@@ -107,7 +107,8 @@ Route::prefix('admin')->group(function () {
         // categories_photo
         Route::resource('/categories_photo', \App\Http\Controllers\Admin\CategoriesPhotoController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
         
-
+        Route::get('/mualaf', [\App\Http\Controllers\Admin\MualafController::class, 'index'])->name('admin.mualaf.index');
+        Route::get('/mualaf/{id}', [\App\Http\Controllers\Admin\MualafController::class, 'show'])->name('admin.mualaf.show');
     });
 
 });
