@@ -123,14 +123,12 @@
                             <li class="{{ setActive('admin/visi') }}"><a class="nav-link"
                                     href="{{ route('admin.visi.index') }}"><i class="fa-solid fa-rocket"></i>
                                     <span>Visi dan Misi</span></a></li>
-                            
                         @endcan
 
                         @can('services.index')
                             <li class="{{ setActive('admin/service') }}"><a class="nav-link"
                                     href="{{ route('admin.service.index') }}"><i class="fa-solid fa-handshake"></i>
                                     <span>Layanan</span></a></li>
-                            
                         @endcan
 
                         @can('contacts.index')
@@ -149,24 +147,30 @@
                             <ul class="dropdown-menu">
                                 @can('enters.index')
                                     <li class="{{ setActive('admin/enter') }}"><a class="nav-link"
-                                            href="{{ route('admin.enter.index') }}"><i class="fa-sharp fa-solid fa-arrow-up" style="color: #A1C398;"></i>
+                                            href="{{ route('admin.enter.index') }}"><i
+                                                class="fa-sharp fa-solid fa-arrow-up" style="color: #A1C398;"></i>
                                             <span>UANG MASUK</span></a></li>
                                 @endcan
                                 @can('enters.index')
-                                <li class="{{ setActive('admin/out') }}"><a class="nav-link"
-                                        href="{{ route('admin.out.index') }}"><i class="fa-sharp fa-solid fa-arrow-down" style="color: #FA7070;"></i>
-                                        <span>UANG KELUAR</span></a></li>
-                            @endcan
+                                    <li class="{{ setActive('admin/out') }}"><a class="nav-link"
+                                            href="{{ route('admin.out.index') }}"><i
+                                                class="fa-sharp fa-solid fa-arrow-down" style="color: #FA7070;"></i>
+                                            <span>UANG KELUAR</span></a></li>
+                                @endcan
                             </ul>
                         </li>
 
                         @can('mualafs.index')
-                           <li class="menu-header">Mualaf</li> 
+                            <li class="menu-header">Mualaf</li>
                             <li class="{{ setActive('admin/mualaf') }}"><a class="nav-link"
                                     href="{{ route('admin.mualaf.index') }}"><i class="fas fa-users"></i>
                                     <span>Mualaf</span></a></li>
-                                    
+                            <li class="{{ setActive('admin/witness') }}"><a class="nav-link"
+                                    href="{{ route('admin.witness.index') }}"><i class="fas fa-users"></i>
+                                    <span>Saksi</span></a></li>
                         @endcan
+
+
 
                         @if (auth()->user()->can('photos.index') || auth()->user()->can('videos.index'))
                             <li class="menu-header">GALERI</li>
@@ -178,21 +182,21 @@
                             <li class="{{ setActive('admin/category_photo') }}"><a class="nav-link"
                                     href="{{ route('admin.categories_photo.index') }}"><i class="fas fa-folder"></i>
                                     <span>Kategori Foto</span></a></li>
-                        @endcan 
-                        
+                        @endcan
+
                         @can('photos.index')
                             <li class="{{ setActive('admin/photo') }}"><a class="nav-link"
                                     href="{{ route('admin.photo.index') }}"><i class="fas fa-image"></i>
                                     <span>Foto</span></a></li>
                         @endcan
 
-                         {{-- category_video --}}
-                         @can('category_videos.index')
+                        {{-- category_video --}}
+                        @can('category_videos.index')
                             <li class="{{ setActive('admin/category_video') }}"><a class="nav-link"
                                     href="{{ route('admin.category_video.index') }}"><i class="fas fa-folder"></i>
                                     <span>Kategori Video</span></a></li>
-                         @endcan
-                    
+                        @endcan
+
 
                         @can('videos.index')
                             <li class="{{ setActive('admin/video') }}"><a class="nav-link"
@@ -269,7 +273,7 @@
 
     <!-- JS Libraies -->
 
-</script>
+    </script>
     <!-- Page Specific JS File -->
 
     <!-- Template JS File -->

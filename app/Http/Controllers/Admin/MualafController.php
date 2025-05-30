@@ -9,12 +9,19 @@ use App\Models\Saksi;
 
 class MualafController extends Controller
 {
-   public function index()
+   public function __construct()
    {
-    $mualafs = Pendaftaran::latest()->paginate(5);
-    return view('admin.mualaf.index', compact('mualafs'));
+      $this->middleware(['permission:mualafs.index|mualafs.show']);
    }
 
+   public function index()
+   {
+   $mualafs = Pendaftaran::latest()->when(request()->q, function($mualafs){
+      $mualafs = $mualafs->where('nama', 'like', '%'. request()->q . '%');
+   })->paginate(5);
+    return view('admin.mualaf.index', compact('mualafs'));
+   }
+   
    public function show($id)
    {
     $mualaf = Pendaftaran::findOrFail($id);

@@ -119,6 +119,7 @@ class PermissionsTableSeeder extends Seeder
         // Permission for mualaf
         Permission::create(['name' => 'mualafs.create']);
         Permission::create(['name' => 'mualafs.index']);
+        Permission::create(['name' => 'mualafs.show']);
         Permission::create(['name' => 'mualafs.edit']);
         Permission::create(['name' => 'mualafs.delete']);
     }

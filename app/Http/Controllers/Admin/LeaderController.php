@@ -37,7 +37,7 @@ class LeaderController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'telp' => 'required',
-            'image' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Add image validation
         ]);
 
        $image = $request->file('image');
