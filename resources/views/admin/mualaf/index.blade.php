@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="q"
-                                       placeholder="Cari berdasarkan nama mualaf">
+                                       value="{{ request()->q ?? '' }}" placeholder="Cari berdasarkan nama mualaf">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i> CARI
@@ -46,16 +46,19 @@
                                 @forelse ($mualafs as $no => $mualaf)
                                     <tr>
                                         <th scope="row" style="text-align: center">
-                                            {{ ++$no + ($mualafs->currentPage() - 1) * $mualafs->perPage() }}
+                                            {{ $mualafs->firstItem() + $no }}
                                         </th>
-                                        <td>{{ $mualaf->name }}</td>
-                                        <td>{{ $mualaf->nik }}</td>
-                                        <td>{{ $mualaf->gender }}</td>
-                                        <td>{{ $mualaf->tmptlahir }}, {{ \Carbon\Carbon::parse($mualaf->birthdate)->format('d-m-Y') }}</td>
-                                        <td>{{ ucfirst($mualaf->agama) }}</td>
+                                        <td>{{ $mualaf->name ?? '' }}</td>
+                                        <td>{{ $mualaf->nik ?? '' }}</td>
+                                        <td>{{ $mualaf->gender ?? '' }}</td>
+                                        <td>{{ $mualaf->tmptlahir ?? '' }}, {{ $mualaf->birthdate ? \Carbon\Carbon::parse($mualaf->birthdate)->format('d-m-Y') : '' }}</td>
+                                        <td>{{ ucfirst($mualaf->agama ?? '') }}</td>
                                         <td style="text-align: center">
-                                            <a href="{{ route('admin.mualaf.show', $mualaf->id) }}" class="btn btn-info btn-sm">
-                                                <i class="fa fa-eye"></i> Lihat
+                                            <a href="{{ route('admin.mualaf.show', $mualaf->id) }}" class="btn btn-info btn-sm" title="Lihat Detail">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('admin.mualaf.edit', $mualaf->id) }}" class="btn btn-primary btn-sm" title="Edit Data">
+                                                <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -68,7 +71,7 @@
                         </table>
 
                         <div style="text-align: center">
-                            {{ $mualafs->links("vendor.pagination.bootstrap-4") }}
+                            {{ $mualafs->appends(['q' => request()->q])->links("vendor.pagination.bootstrap-4") }}
                         </div>
                     </div>
                 </div>

@@ -109,6 +109,8 @@ Route::prefix('admin')->group(function () {
         
         Route::get('/mualaf', [\App\Http\Controllers\Admin\MualafController::class, 'index'])->name('admin.mualaf.index');
         Route::get('/mualaf/{id}', [\App\Http\Controllers\Admin\MualafController::class, 'show'])->name('admin.mualaf.show');
+        Route::get('/mualaf/{id}/edit', [\App\Http\Controllers\Admin\MualafController::class, 'edit'])->name('admin.mualaf.edit');
+        Route::put('/mualaf/{id}', [\App\Http\Controllers\Admin\MualafController::class, 'update'])->name('admin.mualaf.update'); 
 
         // witness
         Route::resource('/witness', \App\Http\Controllers\Admin\WitnessController::class, ['except' => 'show' ,'as' => 'admin']);
