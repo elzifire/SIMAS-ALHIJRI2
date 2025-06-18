@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log
+use Illuminate\Support\Facades\Log;
 
 class EnterOutSeeder extends Seeder
 {
@@ -65,7 +65,7 @@ class EnterOutSeeder extends Seeder
                 DB::table('outs')->insert($chunk);
             }
         } catch (\Exception $e) {
-            \Log::error('Gagal insert data seeder: ' . $e->getMessage());
+            Log::error('Gagal insert data seeder: ' . $e->getMessage());
             throw new \Exception('Gagal menjalankan seeder: ' . $e->getMessage());
         }
     }
