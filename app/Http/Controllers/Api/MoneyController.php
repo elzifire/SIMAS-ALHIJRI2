@@ -17,6 +17,8 @@ class MoneyController extends Controller
      */
     public function MoneyHomePage(Request $request)
     {
+        $listMoneyEnter = Enter::latest()->paginate(10);
+        $listMoneyOut = Out::latest()->paginate(10);
         $moneyIn = Enter::sum('balance');
         $moneyOut = Out::sum('balance');
         $saldo = $moneyIn - $moneyOut;
@@ -30,6 +32,8 @@ class MoneyController extends Controller
                 'masuk' => $moneyIn,
                 'keluar' => $moneyOut,
                 'saldo' => $saldo,
+                'list_money_enter' => $listMoneyEnter,
+                'list_money_out' => $listMoneyOut
             ]
         ], 200);
     }
