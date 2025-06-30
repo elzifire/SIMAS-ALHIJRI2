@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,7 +12,7 @@ return new class extends Migration
         // Ambil semua nama tabel dari database
         $tables = DB::select('SHOW TABLES');
 
-        // Ambil nama kolom tabel sesuai database
+        // Nama key hasil SHOW TABLES menyesuaikan nama database
         $databaseName = DB::getDatabaseName();
         $key = "Tables_in_{$databaseName}";
 
@@ -21,7 +22,7 @@ return new class extends Migration
             // Cek apakah tabel sudah ada kolom deleted_at atau tidak
             if (!Schema::hasColumn($tableName, 'deleted_at')) {
                 Schema::table($tableName, function (Blueprint $table) {
-                    $table->timestamp('deleted_at')->nullable()->after('updated_at');
+                    $table->timestamp('deleted_at')->nullable();
                 });
             }
         }
