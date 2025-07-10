@@ -38,82 +38,88 @@ Auth::routes(['register' => false]);
 
 Route::prefix('admin')->group(function () {
 
-    Route::group(['middleware' => 'auth'], function(){
+    Route::group(['middleware' => 'auth'], function () {
 
         //dashboard
         Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard.index');
 
         //permissions
-        Route::resource('/permission', \App\Http\Controllers\Admin\PermissionController::class, ['except' => ['show', 'create', 'edit', 'update', 'delete'] ,'as' => 'admin']);
+        Route::resource('/permission', \App\Http\Controllers\Admin\PermissionController::class, ['except' => ['show', 'create', 'edit', 'update', 'delete'], 'as' => 'admin']);
 
         //roles
-        Route::resource('/role', \App\Http\Controllers\Admin\RoleController::class, ['except' => ['show'] ,'as' => 'admin']);
+        Route::resource('/role', \App\Http\Controllers\Admin\RoleController::class, ['except' => ['show'], 'as' => 'admin']);
 
         //users
-        Route::resource('/user', \App\Http\Controllers\Admin\UserController::class, ['except' => ['show'] ,'as' => 'admin']);
+        Route::resource('/user', \App\Http\Controllers\Admin\UserController::class, ['except' => ['show'], 'as' => 'admin']);
 
         //tags
-        Route::resource('/tag', \App\Http\Controllers\Admin\TagController::class, ['except' => 'show' ,'as' => 'admin']);
+        Route::resource('/tag', \App\Http\Controllers\Admin\TagController::class, ['except' => 'show', 'as' => 'admin']);
 
         //categories
-        Route::resource('/category', \App\Http\Controllers\Admin\CategoryController::class, ['except' => 'show' ,'as' => 'admin']);
+        Route::resource('/category', \App\Http\Controllers\Admin\CategoryController::class, ['except' => 'show', 'as' => 'admin']);
 
         //posts
-        Route::resource('/post', \App\Http\Controllers\Admin\PostController::class, ['except' => 'show' ,'as' => 'admin']);
-        
+        Route::resource('/post', \App\Http\Controllers\Admin\PostController::class, ['except' => 'show', 'as' => 'admin']);
+
         Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
         //event
-        Route::resource('/event', \App\Http\Controllers\Admin\EventController::class, ['except' => 'show' ,'as' => 'admin']);
+        Route::resource('/event', \App\Http\Controllers\Admin\EventController::class, ['except' => 'show', 'as' => 'admin']);
 
         //leaders 
-        Route::resource('/leader', \App\Http\Controllers\Admin\LeaderController::class, ['except' => 'show' ,'as' => 'admin']);
+        Route::resource('/leader', \App\Http\Controllers\Admin\LeaderController::class, ['except' => 'show', 'as' => 'admin']);
 
         //photo
-        Route::resource('/photo', \App\Http\Controllers\Admin\PhotoController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
+        Route::resource('/photo', \App\Http\Controllers\Admin\PhotoController::class, ['except' => ['show', 'create', 'edit', 'update'], 'as' => 'admin']);
 
         // categories_photo
-        Route::resource('/category_photo', \App\Http\Controllers\Admin\CategoriesPhotoController::class, ['except' => 'show' ,'as' => 'admin']);
-        
+        Route::resource('/category_photo', \App\Http\Controllers\Admin\CategoriesPhotoController::class, ['except' => 'show', 'as' => 'admin']);
+
         //video
-        Route::resource('/video', \App\Http\Controllers\Admin\VideoController::class, ['except' => 'show' ,'as' => 'admin']);
+        Route::resource('/video', \App\Http\Controllers\Admin\VideoController::class, ['except' => 'show', 'as' => 'admin']);
 
         // categories_video
-        Route::resource('/category_video', \App\Http\Controllers\Admin\CategoryVideoController::class, ['except' => 'show' ,'as' => 'admin']);
-    
+        Route::resource('/category_video', \App\Http\Controllers\Admin\CategoryVideoController::class, ['except' => 'show', 'as' => 'admin']);
+
         //slider
-        Route::resource('/slider', \App\Http\Controllers\Admin\SliderController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
+        Route::resource('/slider', \App\Http\Controllers\Admin\SliderController::class, ['except' => ['show', 'create', 'edit', 'update'], 'as' => 'admin']);
 
         // money enter
         Route::resource('/enter', \App\Http\Controllers\Admin\EnterController::class, ['except' => 'show', 'as' => 'admin']);
 
         // money out
-        Route::resource('/out',  OutController::class, ['except' => 'show' ,'as' => 'admin']);
+        Route::resource('/out',  OutController::class, ['except' => 'show', 'as' => 'admin']);
 
         //muadzin 
         Route::resource('/muadzin', \App\Http\Controllers\Admin\MuadzinController::class, ['except' => 'show', 'as' => 'admin']);
-        
+
         //management
-        Route::resource('/management', \App\Http\Controllers\Admin\ManagementController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
-        
+        Route::resource('/management', \App\Http\Controllers\Admin\ManagementController::class, ['except' => ['show', 'create', 'edit', 'update'], 'as' => 'admin']);
+
         // contact
-        Route::resource('/contact', \App\Http\Controllers\Admin\ContactController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
-        
+        Route::resource('/contact', \App\Http\Controllers\Admin\ContactController::class, ['except' => ['show', 'create', 'edit', 'update'], 'as' => 'admin']);
+
         // visi dan misi
-        Route::resource('/visi', \App\Http\Controllers\Admin\VisiController::class, ['except' => 'show' ,'as' => 'admin']);
+        Route::resource('/visi', \App\Http\Controllers\Admin\VisiController::class, ['except' => 'show', 'as' => 'admin']);
 
         // Service
-        Route::resource('/service', \App\Http\Controllers\Admin\ServiceController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
+        Route::resource('/service', \App\Http\Controllers\Admin\ServiceController::class, ['except' => ['show', 'create', 'edit', 'update'], 'as' => 'admin']);
 
         // categories_photo
-        Route::resource('/categories_photo', \App\Http\Controllers\Admin\CategoriesPhotoController::class, ['except' => ['show', 'create', 'edit', 'update'] ,'as' => 'admin']);
-        
+        Route::resource('/categories_photo', \App\Http\Controllers\Admin\CategoriesPhotoController::class, ['except' => ['show', 'create', 'edit', 'update'], 'as' => 'admin']);
+
         Route::get('/mualaf', [\App\Http\Controllers\Admin\MualafController::class, 'index'])->name('admin.mualaf.index');
         Route::get('/mualaf/{id}', [\App\Http\Controllers\Admin\MualafController::class, 'show'])->name('admin.mualaf.show');
         Route::get('/mualaf/{id}/edit', [\App\Http\Controllers\Admin\MualafController::class, 'edit'])->name('admin.mualaf.edit');
-        Route::put('/mualaf/{id}', [\App\Http\Controllers\Admin\MualafController::class, 'update'])->name('admin.mualaf.update'); 
+        Route::put('/mualaf/{id}', [\App\Http\Controllers\Admin\MualafController::class, 'update'])->name('admin.mualaf.update');
+
+        // List pembayaran zakat
+        Route::get('/payment-zakat', [\App\Http\Controllers\Admin\PaymentZakatController::class, 'index'])->name('admin.payment-zakat.index');
+
+        // Update verifikasi zakat
+        Route::put('/payment-zakat/{paymentZakat}', [\App\Http\Controllers\Admin\PaymentZakatController::class, 'update'])->name('admin.payment-zakat.update');
+
 
         // witness
-        Route::resource('/witness', \App\Http\Controllers\Admin\WitnessController::class, ['except' => 'show' ,'as' => 'admin']);
+        Route::resource('/witness', \App\Http\Controllers\Admin\WitnessController::class, ['except' => 'show', 'as' => 'admin']);
     });
-
 });

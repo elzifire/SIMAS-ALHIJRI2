@@ -122,5 +122,9 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'mualafs.show']);
         Permission::create(['name' => 'mualafs.edit']);
         Permission::create(['name' => 'mualafs.delete']);
+
+        // Permission for Payment Zakat
+        Permission::create(['name' => 'payment-zakat.index']);
+        Permission::create(['name' => 'payment-zakat.update']);
     }
 }

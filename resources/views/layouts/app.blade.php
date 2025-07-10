@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Dashboard &mdash; Masjid UIKA</title>
+    <title>Dashboard — Masjid UIKA</title>
     <link rel="shortcut icon" href="{{ asset('assets/img/school.svg') }}" type="image/x-icon">
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -19,14 +19,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 
-    {{-- font awesome  --}}
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
-
 </head>
 
 <body style="background: #e2e8f0">
@@ -41,7 +40,6 @@
                     </ul>
                 </form>
                 <ul class="navbar-nav navbar-right">
-
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}"
@@ -50,8 +48,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="{{ route('logout') }}" style="cursor: pointer"
-                                onclick="event.preventDefault(); confirmLogout();
-                                                    "
+                                onclick="event.preventDefault(); confirmLogout();"
                                 class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
@@ -68,9 +65,6 @@
                     <div class="sidebar-brand">
                         <a href="#">MASJID UIKA</a>
                     </div>
-                    {{-- <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">SMK</a>
-                    </div> --}}
                     <ul class="sidebar-menu">
                         <li class="menu-header">MAIN MENU</li>
                         <li class="{{ setActive('admin/dashboard') }}"><a class="nav-link"
@@ -137,28 +131,39 @@
                                     <span>Kontak</span></a></li>
                         @endcan
 
-
-
-
-                        <li class="dropdown {{ setActive('admin/enter') }}">
-                            <a href="#" class="nav-link has-dropdown"><i class="fas fa-money-bill"></i>
-                                <span>UANG KAS</span></a>
-
-                            <ul class="dropdown-menu">
-                                @can('enters.index')
-                                    <li class="{{ setActive('admin/enter') }}"><a class="nav-link"
-                                            href="{{ route('admin.enter.index') }}"><i
-                                                class="fa-sharp fa-solid fa-arrow-up" style="color: #A1C398;"></i>
-                                            <span>UANG MASUK</span></a></li>
-                                @endcan
-                                @can('enters.index')
-                                    <li class="{{ setActive('admin/out') }}"><a class="nav-link"
-                                            href="{{ route('admin.out.index') }}"><i
-                                                class="fa-sharp fa-solid fa-arrow-down" style="color: #FA7070;"></i>
-                                            <span>UANG KELUAR</span></a></li>
-                                @endcan
-                            </ul>
-                        </li>
+                        <!-- Optimized Finance Dropdown -->
+                        @if (auth()->user()->can('payment-zakat.index') || auth()->user()->can('enters.index'))
+                            <li class="dropdown {{ setActive(['admin/payment-zakat', 'admin/enter', 'admin/out']) }}">
+                                <a href="#" class="nav-link has-dropdown"><i class="fas fa-money-bill"></i>
+                                    <span>Keuangan</span></a>
+                                <ul class="dropdown-menu">
+                                    @can('payment-zakat.index')
+                                        <li class="{{ setActive('admin/payment-zakat') }}">
+                                            <a class="nav-link" href="{{ route('admin.payment-zakat.index') }}">
+                                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                                                <span>Payment Zakat</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('enters.index')
+                                        <li class="{{ setActive('admin/enter') }}">
+                                            <a class="nav-link" href="{{ route('admin.enter.index') }}">
+                                                <i class="fa-sharp fa-solid fa-arrow-up" style="color: #A1C398;"></i>
+                                                <span>Uang Masuk</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('enters.index')
+                                        <li class="{{ setActive('admin/out') }}">
+                                            <a class="nav-link" href="{{ route('admin.out.index') }}">
+                                                <i class="fa-sharp fa-solid fa-arrow-down" style="color: #FA7070;"></i>
+                                                <span>Uang Keluar</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                </ul>
+                            </li>
+                        @endif
 
                         @can('mualafs.index')
                             <li class="menu-header">Mualaf</li>
@@ -170,14 +175,10 @@
                                     <span>Saksi</span></a></li>
                         @endcan
 
-
-
                         @if (auth()->user()->can('photos.index') || auth()->user()->can('videos.index'))
                             <li class="menu-header">GALERI</li>
                         @endif
 
-
-                        {{-- {{-- categories_photo --}}
                         @can('photos.index')
                             <li class="{{ setActive('admin/category_photo') }}"><a class="nav-link"
                                     href="{{ route('admin.categories_photo.index') }}"><i class="fas fa-folder"></i>
@@ -190,21 +191,17 @@
                                     <span>Foto</span></a></li>
                         @endcan
 
-                        {{-- category_video --}}
                         @can('category_videos.index')
                             <li class="{{ setActive('admin/category_video') }}"><a class="nav-link"
                                     href="{{ route('admin.category_video.index') }}"><i class="fas fa-folder"></i>
                                     <span>Kategori Video</span></a></li>
                         @endcan
 
-
                         @can('videos.index')
                             <li class="{{ setActive('admin/video') }}"><a class="nav-link"
                                     href="{{ route('admin.video.index') }}"><i class="fas fa-video"></i>
                                     <span>Video</span></a></li>
                         @endcan
-
-
 
                         @if (auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index'))
                             <li class="menu-header">PENGATURAN</li>
@@ -216,14 +213,11 @@
                                     <span>Sliders</span></a></li>
                         @endcan
 
-                        <li
-                            class="dropdown {{ setActive('admin/role') . setActive('admin/permission') . setActive('admin/user') }}">
+                        <li class="dropdown {{ setActive(['admin/role', 'admin/permission', 'admin/user']) }}">
                             @if (auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index'))
-                                <a href="#" class="nav-link has-dropdown"><i
-                                        class="fas fa-users"></i><span>Users
-                                        Management</span></a>
+                                <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i>
+                                    <span>Users Management</span></a>
                             @endif
-
                             <ul class="dropdown-menu">
                                 @can('roles.index')
                                     <li class="{{ setActive('admin/role') }}"><a class="nav-link"
@@ -231,13 +225,11 @@
                                             Roles</a>
                                     </li>
                                 @endcan
-
                                 @can('permissions.index')
                                     <li class="{{ setActive('admin/permission') }}"><a class="nav-link"
                                             href="{{ route('admin.permission.index') }}"><i class="fas fa-key"></i>
                                             Permissions</a></li>
                                 @endcan
-
                                 @can('users.index')
                                     <li class="{{ setActive('admin/user') }}"><a class="nav-link"
                                             href="{{ route('admin.user.index') }}"><i class="fas fa-users"></i> Users</a>
@@ -254,12 +246,9 @@
 
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2024 <div class="bullet"></div> SIMAS <div class="bullet"></div> All Rights
-                    Reserved.
+                    Copyright © 2024 <div class="bullet"></div> SIMAS <div class="bullet"></div> All Rights Reserved.
                 </div>
-                <div class="footer-right">
-
-                </div>
+                <div class="footer-right"></div>
             </footer>
         </div>
     </div>
@@ -271,16 +260,11 @@
     <script src="{{ asset('assets/js/stisla.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
 
-    <!-- JS Libraies -->
-
-    </script>
-    <!-- Page Specific JS File -->
-
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     <script>
-        //active select2
+        // Active select2
         $(document).ready(function() {
             $('select').select2({
                 theme: 'bootstrap4',
@@ -288,7 +272,7 @@
             });
         });
 
-        //flash message
+        // Flash message
         @if (session()->has('success'))
             swal({
                 type: "success",
@@ -313,7 +297,7 @@
             });
         @endif
 
-        //confirm logout
+        // Confirm logout
         function confirmLogout() {
             swal({
                 title: "Apakah Anda Yakin?",
