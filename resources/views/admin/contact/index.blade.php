@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label>Nomor Telepon</label>
-                            <input type="tel" name="phone"  placeholder="Masukkan nomor" class="form-control @error('telp') is-invalid @enderror">
+                            <input type="tel" name="phone"  placeholder="Masukkan nomor contoh 0812345" class="form-control @error('telp') is-invalid @enderror">
                             @error('telp')
                             <div class="invalid-feedback" style="display: block">
                                 {{ $message }}
@@ -56,7 +56,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $contact->name }}</td>
-                                <td>{{ $contact->phone }}</td>
+                                <td>{{ +62$contact->phone }}</td>
                                 <td class="text-center">
                                     {{-- <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $contact->id }}">
                                         <i class="fa fa-trash"></i>

@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VisiController;
+use App\Http\Controllers\Api\MoneyController;
+use App\Http\Controllers\FirebaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +56,9 @@ Route::get('/video', [App\Http\Controllers\Api\VideoController::class, 'index'])
 Route::get('/homepage/video', [App\Http\Controllers\Api\VideoController::class, 'VideoHomepage']);
 
 //money
-Route::get('/homepage/money', [\App\Http\Controllers\Api\MoneyController::class, 'MoneyHomePage']);
+Route::get('/money/summary', [MoneyController::class, 'summary']);
+Route::get('/money/enter', [MoneyController::class, 'enter']);
+Route::get('/money/out', [MoneyController::class, 'out']);
 Route::get('/grapik', [\App\Http\Controllers\Api\MoneyController::class, 'grapik']);
 
 // muadzin
@@ -83,3 +87,10 @@ Route::post('mualaf', [App\Http\Controllers\Api\MualafController::class, 'store'
 
 // categories_photo
 Route::get(('categories_photo'), [App\Http\Controllers\Api\PhotoController::class, 'index']);
+
+// payment_zakat
+Route::post('payment_zakat', [App\Http\Controllers\Api\PaymentZakatController::class, 'store']);
+
+Route::post('/firebase/send-to-topic', [FirebaseController::class, 'sendToTopic']);
+Route::get('/firebase/check-news', [FirebaseController::class, 'checkNewNews']);
+Route::get('/firebase/schedule-events', [FirebaseController::class, 'scheduleEventNotifications']);

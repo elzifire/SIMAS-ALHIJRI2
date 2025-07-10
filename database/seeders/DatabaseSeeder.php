@@ -22,8 +22,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(TagsTableSeeder::class);
         // $this->call(PostsTableSeeder::class);
         // $this->call(PostTagTableSeeder::class);
-        // $this->call(CategoriesPhotoSeeder::class);
+        $this->call(CategoriesPhotoSeeder::class);
         // $this->call(PhotosSeeder::class);
-        $this->call(PendaftaranSeeder::class);
+        // $this->call(PendaftaranSeeder::class);
+        // $this->call(EnterOutSeeder::class);
     }
 }

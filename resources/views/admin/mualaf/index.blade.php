@@ -37,8 +37,7 @@
                                     <th scope="col">NAMA</th>
                                     <th scope="col">NIK</th>
                                     <th scope="col">GENDER</th>
-                                    <th scope="col">TTL</th>
-                                    <th scope="col">AGAMA SEBELUMNYA</th>
+                                    <th scope="col">NO HP</th>
                                     <th scope="col" style="text-align: center">AKSI</th>
                                 </tr>
                             </thead>
@@ -51,8 +50,14 @@
                                         <td>{{ $mualaf->name ?? '' }}</td>
                                         <td>{{ $mualaf->nik ?? '' }}</td>
                                         <td>{{ $mualaf->gender ?? '' }}</td>
-                                        <td>{{ $mualaf->tmptlahir ?? '' }}, {{ $mualaf->birthdate ? \Carbon\Carbon::parse($mualaf->birthdate)->format('d-m-Y') : '' }}</td>
-                                        <td>{{ ucfirst($mualaf->agama ?? '') }}</td>
+                                        <td>@if($mualaf->phone)
+                                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $mualaf->phone) }}"
+                                                   target="_blank" title="Chat via WhatsApp">
+                                                    {{ $mualaf->phone }}
+                                                </a>
+                                            @else
+                                                -
+                                            @endif</td>
                                         <td style="text-align: center">
                                             <a href="{{ route('admin.mualaf.show', $mualaf->id) }}" class="btn btn-info btn-sm" title="Lihat Detail">
                                                 <i class="fa fa-eye"></i>
