@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pendaftaran;
 use App\Models\Saksi;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class MualafController extends Controller
 {
@@ -70,5 +71,48 @@ class MualafController extends Controller
         );
 
         return redirect()->route('admin.mualaf.index')->with('success', 'Data pendaftaran mualaf berhasil diperbarui!');
+    }
+
+    public function downloadSurat($id)
+    {
+        // Ambil semua data yang diperlukan
+        $pendaftaran = Pendaftaran::with('saksi')->findOrFail($id);
+
+        // Nomor Surat (contoh dinamis, sesuaikan formatnya)
+        // Format: No / Kode / Nama_Lembaga / Bulan_Romawi / Tahun
+        $nomorSurat = sprintf('%03d/SPM/IBNKHALDUNUIKA/%s/%d', 
+            $pendaftaran->id, 
+            $this->getRomanMonth(date('n')), 
+            date('Y')
+        );
+
+        // Data yang akan dikirim ke view surat
+        $data = [
+            'pendaftaran' => $pendaftaran,
+            'nomor_surat' => $nomorSurat,
+            'nama_ketua_dkm' => 'Dr. H. Dedi Supriadi, M.Si., M.Pd', // Sesuaikan jika ini dinamis
+        ];
+
+        // Buat PDF dari view
+        $pdf = PDF::loadView('admin.mualaf.surat_pernyataan_pdf', $data);
+
+        // Download PDF dengan nama file dinamis
+        return $pdf->download('Surat Pernyataan Mualaf - ' . $pendaftaran->name . '.pdf');
+    }
+
+    // Helper function untuk mengubah bulan menjadi angka romawi
+    private function getRomanMonth($month) {
+        $map = ['M' => 1000, 'CM' => 900, 'D' => 500, 'CD' => 400, 'C' => 100, 'XC' => 90, 'L' => 50, 'XL' => 40, 'X' => 10, 'IX' => 9, 'V' => 5, 'IV' => 4, 'I' => 1];
+        $returnValue = '';
+        while ($month > 0) {
+            foreach ($map as $roman => $int) {
+                if($month >= $int) {
+                    $month -= $int;
+                    $returnValue .= $roman;
+                    break;
+                }
+            }
+        }
+        return $returnValue;
     }
 }

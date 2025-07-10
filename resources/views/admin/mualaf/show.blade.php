@@ -20,6 +20,11 @@
                         <a href="{{ route('admin.mualaf.edit', $mualaf->id) }}" class="btn btn-warning btn-icon icon-left">
                             <i class="fas fa-edit"></i> Edit Data
                         </a>
+                        
+                         <a href="{{ route('admin.mualaf.download_surat', $mualaf->id) }}" class="btn btn-success btn-icon icon-left">
+                             <i class="fas fa-download"></i> Download Surat
+                        </a>
+       
                         <a href="{{ route('admin.mualaf.index') }}" class="btn btn-light btn-icon icon-left">
                             <i class="fas fa-arrow-left"></i> Kembali
                         </a>
