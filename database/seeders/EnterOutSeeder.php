@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace Database\Seeders;
 
@@ -10,58 +10,52 @@ use Illuminate\Support\Facades\Log;
 
 class EnterOutSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        $faker = Faker::create('id_ID');
-
+        $faker = Faker::create('id_ID'); // Locale Indonesia buat nama realistis
         $enterNames = [
-            'Donasi Jemaah', 'Infak Jumat', 'Sumbangan Acara Besar', 'Gaji Karyawan Donasi',
-            'Pembayaran Sewa Aula', 'Hasil Usaha Koperasi', 'Dana CSR Perusahaan',
-            'Penjualan Barang Wakaf', 'Donasi Online', 'Subsidi Pemerintah'
+            'Gaji Karyawan', 'Pembayaran Invoice', 'Hasil Investasi', 'Donasi Masjid', 'Penjualan Barang',
+            'Pendapatan Sewa', 'Dana Proyek', 'Pembayaran Klien', 'Sumbangan Jemaah', 'Keuntungan Usaha'
         ];
-
         $outNames = [
-            'Listrik Bulanan', 'Air Bulanan', 'Beli Al-Quran', 'Bayar Gaji Petugas',
-            'Konsumsi Acara', 'Perbaikan AC', 'Renovasi Ringan', 'Transportasi Ustadz',
-            'Cetak Pamflet', 'Biaya Internet'
+            'Sewa Kantor', 'Tagihan Listrik', 'Pembelian Peralatan', 'Biaya Operasional', 'Pembayaran Vendor',
+            'Perawatan Gedung', 'Tagihan Air', 'Biaya Transportasi', 'Pembelian Bahan Baku', 'Renovasi Masjid'
         ];
 
-        // Matikan foreign key check, truncate, dan reset auto-increment
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        DB::table('enters')->truncate();
-        DB::table('outs')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
-
-        // Generate surplus data
+        // Generate 500 data buat enters
         $enters = [];
-        for ($i = 0; $i < 700; $i++) {
-            $balance = number_format($faker->randomFloat(2, 50000, 3000000), 2, '.', '');
+        for ($i = 0; $i < 500; $i++) {
+            $balance = number_format($faker->randomFloat(2, 10000, 999999.99), 2, '.', ''); // 10.000 - 999.999,99
             $date = $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d');
             $enters[] = [
                 'name' => $faker->randomElement($enterNames) . ' ' . $faker->lexify('???'),
                 'balance' => $balance,
                 'date' => $date,
-                'total' => $faker->boolean(90) ? $balance : null,
+                'total' => $faker->boolean(70) ? $balance : null, // 70% chance total = balance
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
         }
 
+        // Generate 500 data buat outs
         $outs = [];
-        for ($i = 0; $i < 400; $i++) {
-            $balance = number_format($faker->randomFloat(2, 10000, 750000), 2, '.', '');
+        for ($i = 0; $i < 500; $i++) {
+            $balance = number_format($faker->randomFloat(2, 10000, 999999.99), 2, '.', ''); // 10.000 - 999.999,99
             $date = $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d');
             $outs[] = [
                 'name' => $faker->randomElement($outNames) . ' ' . $faker->lexify('???'),
                 'balance' => $balance,
                 'date' => $date,
-                'total' => $faker->boolean(85) ? $balance : null,
+                'total' => $faker->boolean(70) ? $balance : null, // 70% chance total = balance
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
         }
 
-        // Insert data in chunk
+        // Insert data pake chunk biar efisien
         $chunkSize = 100;
         try {
             foreach (array_chunk($enters, $chunkSize) as $chunk) {
