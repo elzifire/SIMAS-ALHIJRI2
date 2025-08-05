@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VisiController;
 use App\Http\Controllers\Api\MoneyController;
-use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\Api\MualafController;
 
 /*
@@ -91,7 +90,3 @@ Route::get(('categories_photo'), [App\Http\Controllers\Api\PhotoController::clas
 
 // payment_zakat
 Route::post('payment_zakat', [App\Http\Controllers\Api\PaymentZakatController::class, 'store']);
-
-Route::post('/firebase/send-to-topic', [FirebaseController::class, 'sendToTopic']);
-Route::get('/firebase/check-news', [FirebaseController::class, 'checkNewNews']);
-Route::get('/firebase/schedule-events', [FirebaseController::class, 'scheduleEventNotifications']);
