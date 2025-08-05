@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VisiController;
 use App\Http\Controllers\Api\MoneyController;
 use App\Http\Controllers\FirebaseController;
+use App\Http\Controllers\Api\MualafController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +84,7 @@ Route::get('contact', [App\Http\Controllers\Api\ContactController::class, 'index
 Route::get('service', [App\Http\Controllers\Api\ServiceController::class, 'index']);
 
 // mualaf
-Route::post('mualaf', [App\Http\Controllers\Api\MualafController::class, 'store']);
+Route::post('/mualaf', [MualafController::class, 'store']);
 
 // categories_photo
 Route::get(('categories_photo'), [App\Http\Controllers\Api\PhotoController::class, 'index']);
