@@ -27,7 +27,7 @@ return new class extends Migration
             $table->text('address');
             $table->text('alamatktp');
             $table->string('photo');
-            $table->string('session_id');
+            $table->string('session_id')->nullable();
             $table->timestamps();
 
         });

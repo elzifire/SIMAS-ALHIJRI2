@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pendaftaran;
-use Illuminate\Support\Facades\Storage;
 
 class MualafController extends Controller
 {
     public function store(Request $request)
     {
-        $validated = $this->validate($request, [
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'nik' => 'required|string|unique:pendaftaran,nik',
             'gender' => 'required|in:Laki-laki,Perempuan',
@@ -28,37 +27,39 @@ class MualafController extends Controller
             'session_id' => 'nullable|string',
         ]);
 
-        try {
-            $mualaf = new Pendaftaran();
-            $mualaf->name = $validated['name'];
-            $mualaf->nik = $validated['nik'];
-            $mualaf->gender = $validated['gender'];
-            $mualaf->tmptlahir = $validated['tmptlahir'];
-            $mualaf->birthdate = $validated['birthdate'];
-            $mualaf->pekerjaan = $validated['pekerjaan'];
-            $mualaf->agama = $validated['agama'];
-            $mualaf->kebangsaan = $validated['kebangsaan'];
-            $mualaf->email = $validated['email'];
-            $mualaf->phone = $validated['phone'];
-            $mualaf->address = $validated['address'];
-            $mualaf->alamatktp = $validated['alamatktp'] ?? null;
-            $mualaf->session_id = $validated['session_id'] ?? null;
+        $photoPath = null;
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('mualaf', 'public');
+        }
 
-            if ($request->hasFile('photo')) {
-                $photoPath = $request->file('photo')->store('mualaf', 'public');
-                $mualaf->photo = $photoPath;
-            }
+        $mualaf = Pendaftaran::create([
+            'name'        => $validated['name'],
+            'nik'         => $validated['nik'],
+            'gender'      => $validated['gender'],
+            'tmptlahir'   => $validated['tmptlahir'],
+            'birthdate'   => $validated['birthdate'],
+            'pekerjaan'   => $validated['pekerjaan'],
+            'agama'       => $validated['agama'],
+            'kebangsaan'  => $validated['kebangsaan'],
+            'email'       => $validated['email'],
+            'phone'       => $validated['phone'],
+            'address'     => $validated['address'],
+            'alamatktp'   => $validated['alamatktp'] ?? null,
+            'session_id'  => $validated['session_id'] ?? null,
+            'photo'       => $photoPath,
+        ]);
 
-            $mualaf->save();
-
+        // Cek apakah gagal disimpan
+        if (!$mualaf) {
             return response()->json([
-                'message' => 'Data berhasil disimpan',
-                'data' => $mualaf,
-            ], 201);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Data gagal disimpan: ' . $e->getMessage(),
+                'message' => 'Data gagal disimpan'
             ], 500);
         }
+
+        // Kalau berhasil
+        return response()->json([
+            'message' => 'Data berhasil disimpan',
+            'data'    => $mualaf,
+        ], 201);
     }
 }
