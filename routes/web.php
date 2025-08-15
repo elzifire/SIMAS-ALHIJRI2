@@ -118,6 +118,14 @@ Route::prefix('admin')->group(function () {
         // Update verifikasi zakat
         Route::put('/payment-zakat/{paymentZakat}', [\App\Http\Controllers\Admin\PaymentZakatController::class, 'update'])->name('admin.payment-zakat.update');
 
+        // categories_campaign
+        Route::resource('/category_campaign', \App\Http\Controllers\Admin\CategoriesCampaignController::class, ['except' => 'show', 'as' => 'admin']);
+
+        // campaign
+        Route::resource('/campaign', \App\Http\Controllers\Admin\CampaignController::class, ['except' => 'show', 'as' => 'admin']);
+
+        // donation
+        Route::resource('/donation', \App\Http\Controllers\Admin\DonationController::class, ['except' => 'show', 'as' => 'admin']);
 
         // witness
         Route::resource('/witness', \App\Http\Controllers\Admin\WitnessController::class, ['except' => 'show', 'as' => 'admin']);

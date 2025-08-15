@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VisiController;
 use App\Http\Controllers\Api\MoneyController;
 use App\Http\Controllers\Api\MualafController;
+use App\Http\Controllers\Api\DonationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,3 +91,8 @@ Route::get(('categories_photo'), [App\Http\Controllers\Api\PhotoController::clas
 
 // payment_zakat
 Route::post('payment_zakat', [App\Http\Controllers\Api\PaymentZakatController::class, 'store']);
+
+// donation
+Route::get('donations', [DonationController::class, 'index']);
+Route::post('donations', [DonationController::class, 'store']);
+Route::get('donation/{id}', [DonationController::class, 'show']);

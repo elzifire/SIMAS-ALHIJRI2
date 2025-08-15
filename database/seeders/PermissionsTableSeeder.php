@@ -126,5 +126,20 @@ class PermissionsTableSeeder extends Seeder
         // Permission for Payment Zakat
         Permission::create(['name' => 'payment-zakat.index']);
         Permission::create(['name' => 'payment-zakat.update']);
+        Permission::create(['name' => 'payment-zakat.create']);
+
+        //permission for donation
+        Permission::create(['name' => 'donations.index']);
+        Permission::create(['name' => 'donations.create']);
+        Permission::create(['name' => 'donations.edit']);
+        Permission::create(['name' => 'donations.delete']);
+        
+        // permission for campaign
+        Permission::create(['name' => 'campaigns.index']);
+        Permission::create(['name' => 'campaigns.create']);
+        Permission::create(['name' => 'campaigns.edit']);
+        Permission::create(['name' => 'campaigns.delete']);
+
+        
     }
 }
