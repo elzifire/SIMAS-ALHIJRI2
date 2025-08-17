@@ -79,13 +79,19 @@ class CategoriesCampaignController extends Controller
 }
 
 
-    public function destroy(CategoriesCampaign $categoriesCampaign)
+    public function destroy($id)
     {
         $this->middleware('permission:campaigns.delete');
 
-        $categoriesCampaign->delete();
+       $categories = CategoriesCampaign::findOrFail($id);
+       $categories->delete();
 
-        return redirect()->route('admin.categories_campaign.index')
-            ->with('success', 'Category Campaign deleted successfully.');
+       if ($categories) {
+           return redirect()->route('admin.category_campaign.index')
+               ->with('success', 'Kategori Program Kampanye berhasil dihapus.');
+       } else {
+           return redirect()->route('admin.category_campaign.index')
+               ->with('error', 'Kategori Program Kampanye gagal dihapus.');
+       }
     }
 }

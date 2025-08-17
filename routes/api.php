@@ -96,3 +96,5 @@ Route::post('payment_zakat', [App\Http\Controllers\Api\PaymentZakatController::c
 Route::get('donations', [DonationController::class, 'index']);
 Route::post('donations', [DonationController::class, 'store']);
 Route::get('donation/{id}', [DonationController::class, 'show']);
+Route::get('homepage/donations', [DonationController::class, 'home']);
+Route::get('categories/donations', [DonationController::class, 'categories']);

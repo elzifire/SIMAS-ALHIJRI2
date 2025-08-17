@@ -38,6 +38,7 @@ class CampaignController extends Controller
 
         return view('admin.campaign.index', compact('campaigns'));
     }
+    
 
     public function create()
     {
@@ -62,7 +63,6 @@ class CampaignController extends Controller
             'expired'       => 'required|date',
             'category_id'   => 'required|exists:categories_campaign,id',
             'bank_info'     => 'nullable|string',
-            'status'        => 'required|string|max:50',
         ]);
 
         $data = $request->except(['image']);
