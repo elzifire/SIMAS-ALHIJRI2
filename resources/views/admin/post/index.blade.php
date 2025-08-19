@@ -47,9 +47,9 @@
                             @foreach ($posts as $no => $post)
                                 <tr>
                                     <th scope="row" style="text-align: center">{{ ++$no + ($posts->currentPage()-1) * $posts->perPage() }}</th>
-                                    <td>{{ $post->title }}</td>
-                                    <td>{{ $post->category->name }}</td>
-                                    <td>{{ $post->date }}</td>
+                                    <td>{{ $post->title ?? '-' }}</td>
+                                    <td>{{ $post->category->name ?? '-' }}</td>
+                                    <td>{{ $post->date ?? '-' }}</td>
                                     <td class="text-center">
                                         @can('posts.edit')
                                             <a href="{{ route('admin.post.edit', $post->id) }}" class="btn btn-sm btn-primary">
