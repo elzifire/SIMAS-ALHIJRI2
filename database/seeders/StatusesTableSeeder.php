@@ -10,9 +10,9 @@ class StatusesTableSeeder extends Seeder
     public function run(): void
     {
         $statuses = [
-            ['name' => 'pending'],
-            ['name' => 'approved'],
-            ['name' => 'rejected'],
+            ['name' => 'Menunggu'],   // pending
+            ['name' => 'Disetujui'],  // approved
+            ['name' => 'Ditolak'],    // rejected
         ];
 
         foreach ($statuses as $status) {

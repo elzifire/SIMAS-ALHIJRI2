@@ -166,12 +166,12 @@ class DonationController extends Controller
                 $data['proof_image'] = $request->file('proof_image')->store('donations/proofs', 'public');
             }
 
-            $donation = Donation::create($data);
+             Donation::create($data);
 
             return response()->json([
                 'status' => 'success',
                 'message' => 'Donasi berhasil dikirim, menunggu verifikasi admin.',
-                'data' => $donation,
+                'data' => $data,
             ], 201);
         } catch (\Exception $e) {
             return response()->json([
