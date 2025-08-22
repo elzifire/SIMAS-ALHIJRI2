@@ -159,7 +159,7 @@ class DonationController extends Controller
             // Data donasi
             $data = $request->except(['proof_image']);
             $data['user_id'] = Auth::id();
-            $data['status_id'] = Status::where('name', 'pending')->first()->id;
+            $data['status_id'] = Status::where('name', 'Menunggu')->first()->id;
 
             // Upload bukti transfer
             if ($request->hasFile('proof_image')) {
