@@ -28,7 +28,8 @@ Route::get('/post', [App\Http\Controllers\Api\PostController::class, 'index']);
 Route::get('/post/{id?}', [App\Http\Controllers\Api\PostController::class, 'show']);
 Route::get('/homepage/post', [App\Http\Controllers\Api\PostController::class, 'PostHomePage']);
 Route::get('/post/category/{slug?}', [App\Http\Controllers\Api\PostController::class, 'PostCategory']);
-
+Route::get('/post/category/donasi', [App\Http\Controllers\Api\PostController::class, 'PostByCategoryDonation']);
+Route::get('/post/category/donasi/{slug?}', [App\Http\Controllers\Api\PostController::class, 'PostByCategoryDetailDonation']);
 
 //modul events
 Route::get('/event', [App\Http\Controllers\Api\EventController::class, 'index']);

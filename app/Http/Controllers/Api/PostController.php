@@ -93,4 +93,34 @@ class PostController extends Controller
             "data" => $posts
         ], 200);
     }
+
+    public function PostByCategoryDonation()
+    {
+        $posts = Post::whereHas('category', function($query) {
+            $query->where('slug', 'donasi');
+        })->latest()->paginate(6);
+        return response()->json([
+            "response" => [
+                "status"    => 200,
+                "message"   => "List Data Posts By Category donasi"
+            ],
+            "data" => $posts
+        ], 200);
+    }
+
+    public function PostByCategoryDetailDonation($slug)
+    {
+        $posts = Post::whereHas('category', function($query) use ($slug) {
+            $query->where('slug', $slug);
+        })->latest()->paginate(6);
+        return response()->json([
+            "response" => [
+                "status"    => 200,
+                "message"   => "List Data Posts By Category donasi"
+            ],
+            "data" => $posts
+        ], 200);
+    }
+
+
 }
