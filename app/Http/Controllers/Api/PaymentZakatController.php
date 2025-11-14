@@ -14,14 +14,14 @@ class PaymentZakatController extends Controller
     public function store(Request $request)
     {
         // Validasi captcha
-        $isVerified = filter_var($request->input('is_verified'), FILTER_VALIDATE_BOOLEAN);
-        if (!$isVerified) {
-            return response()->json([
-                'status'  => false,
-                'message' => 'Verifikasi captcha gagal',
-                'errors'  => ['captcha' => 'Captcha not verified']
-            ], 422);
-        }
+        // $isVerified = filter_var($request->input('is_verified'), FILTER_VALIDATE_BOOLEAN);
+        // if (!$isVerified) {
+        //     return response()->json([
+        //         'status'  => false,
+        //         'message' => 'Verifikasi captcha gagal',
+        //         'errors'  => ['captcha' => 'Captcha not verified']
+        //     ], 422);
+        // }
 
         // Validasi input
         $validator = Validator::make($request->all(), [

@@ -261,4 +261,22 @@ class DonationController extends Controller
             ], 500);
         }
     }
+
+    // mengambil data donatur bedasarkan statuses = 2
+    public function donatur()
+    {
+        try {
+            $donatur = Donation::with('user')->where('status_id', 2)->get();
+
+            return response()->json([
+                'status' => 'success',
+                'data' => $donatur
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal mengambil data donatur: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
 }

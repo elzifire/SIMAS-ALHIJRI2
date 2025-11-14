@@ -99,3 +99,4 @@ Route::post('donations', [DonationController::class, 'store']);
 Route::get('donation/{id}', [DonationController::class, 'show']);
 Route::get('homepage/donations', [DonationController::class, 'home']);
 Route::get('categories/donations', [DonationController::class, 'categories']);
+Route::get('donatur', [DonationController::class, 'donatur']);

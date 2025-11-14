@@ -13,19 +13,21 @@ class Campaign extends Model
 
     protected $table = 'campaigns';
 
-    protected $fillable = [
-        'title',
-        'slug',
-        'image',
-        'goal_amount',
-        'total_collected',
-        'description',
-        'expired',
-        'category_id',
-        'bank_info',
-        'status',
-        'file_qr',
-    ];
+    protected $guarded = [];
+
+    // protected $fillable = [
+    //     'title',
+    //     'slug',
+    //     'image',
+    //     'goal_amount',
+    //     'total_collected',
+    //     'description',
+    //     'expired',
+    //     'category_id',
+    //     'bank_info',
+    //     'status',
+    //     'file_qr',
+    // ];
 
     public function category()
     {

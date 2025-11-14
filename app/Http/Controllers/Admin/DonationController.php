@@ -79,7 +79,7 @@ class DonationController extends Controller
         $donation = Donation::findOrFail($id);
         $campaigns = Campaign::all();
         $statuses = Status::all();
-        $rejectedStatusId = $statuses->where('name', 'rejected')->first()->id;
+        $rejectedStatusId = $statuses->where('name', 'rejected')->first();
 
         return view('admin.donation.edit', compact('donation', 'campaigns', 'statuses', 'rejectedStatusId'));
     }
