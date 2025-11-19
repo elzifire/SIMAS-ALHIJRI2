@@ -24,7 +24,7 @@ use App\Http\Controllers\Admin\OutController;
 use App\Models\Money_keluar;
 use App\Models\Money_masuk;
 use App\Http\Controllers\Admin\VisiController;
-
+use App\Http\Controllers\Admin\FiqihController;
 
 
 
@@ -129,5 +129,13 @@ Route::prefix('admin')->group(function () {
 
         // witness
         Route::resource('/witness', \App\Http\Controllers\Admin\WitnessController::class, ['except' => 'show', 'as' => 'admin']);
+
+        // fiqih
+       Route::get('/fiqih', [\App\Http\Controllers\Admin\FiqihController::class, 'index'])->name('admin.fiqih.index');
+Route::get('/fiqih/create', [\App\Http\Controllers\Admin\FiqihController::class, 'create'])->name('admin.fiqih.create');
+Route::post('/fiqih', [\App\Http\Controllers\Admin\FiqihController::class, 'store'])->name('admin.fiqih.store');
+Route::get('/fiqih/{id}/edit', [\App\Http\Controllers\Admin\FiqihController::class, 'edit'])->name('admin.fiqih.edit');
+Route::put('/fiqih/{id}', [\App\Http\Controllers\Admin\FiqihController::class, 'update'])->name('admin.fiqih.update');
+Route::delete('/fiqih/{id}', [\App\Http\Controllers\Admin\FiqihController::class, 'destroy'])->name('admin.fiqih.destroy');
     });
 });

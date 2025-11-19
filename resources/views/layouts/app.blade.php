@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @vite(['resources/js/app.js'])
 </head>
 
 <body style="background: #e2e8f0">
@@ -268,6 +270,13 @@
                             </li>
                         @endcan
 
+                        {{-- fiqih --}}
+                        <li class="{{ setActive('admin/fiqih') }}">
+                            <a class="nav-link" href="{{ route('admin.fiqih.index') }}">
+                                <i class="fa-solid fa-book"></i> <span>Fiqih</span>
+                            </a>
+                        </li>
+
                         <!-- Galeri Dropdown -->
                         @if (auth()->user()->can('photos.index') || auth()->user()->can('videos.index'))
                             <li class="dropdown {{ setActive(['admin/category_photo', 'admin/photo', 'admin/category_video', 'admin/video']) }}">
@@ -375,6 +384,7 @@
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 
+    <script src="https://kit.fontawesome.com/5f34f5e1d5.js" crossorigin="anonymous"></script>
     <!-- Inline JavaScript -->
     <script>
         // Initialize Select2
