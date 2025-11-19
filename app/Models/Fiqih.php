@@ -11,7 +11,7 @@ class Fiqih extends Model
 
     protected $connection = "fiqih";
 
-    protected $table = "contents";
+    protected $table = "safinah";
 
     protected $fillable = [
         'id',
